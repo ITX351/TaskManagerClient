@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">TaskManagerClient</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- MainActivity -->
+    <string name="main_lblDomainName">Domain Name:</string>
+    <string name="main_lblKeyword">Keyword:</string>
+    <string name="main_btnConnect">Connect</string>
+
+    <!-- TasksActivity -->
+    <string name="tasks_btnKillProcess">Kill Process</string>
+    <string name="tasks_btnScreenShot">Screen Shot</string>
+    <string name="tasks_btnShutdown">Shutdown</string>
+    <string name="tasks_btnDisconnect">Disconnect</string>
+    <string name="tasks_btnRun">Run</string>
+
+    <!-- RunActivity -->
+    <string name="run_lblCommand">Open</string>
+    <string name="run_btnOK">OK</string>
+    <string name="run_btnCancel">Cancel</string>
+    <string name="title_activity_navi">NaviActivity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+</resources>
