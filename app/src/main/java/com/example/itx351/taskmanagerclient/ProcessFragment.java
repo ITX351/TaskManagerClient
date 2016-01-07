@@ -1,16 +1,14 @@
 package com.example.itx351.taskmanagerclient;
 
-import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 
 /**
@@ -54,6 +52,8 @@ public class ProcessFragment extends Fragment {
         RelativeLayout ll = (RelativeLayout)inflater.inflate(R.layout.fragment_process, container, false);
 
         TextView lblOperation = (TextView)ll.findViewById(R.id.pro_lblOperation);
+        final EditText txtProcessName = (EditText)ll.findViewById(R.id.pro_txtProcessName);
+        String processName = txtProcessName.getText().toString();
 
         if (operationType == 0) {
             lblOperation.setText(R.string.pro_RunProcess);
@@ -61,6 +61,21 @@ public class ProcessFragment extends Fragment {
         else if (operationType == 1) {
             lblOperation.setText(R.string.pro_KillProcess);
         }
+
+        Button btnOK = (Button)ll.findViewById(R.id.pro_btnOK);
+        btnOK.setOnClickListener(new Button.OnClickListener() {
+            public void onClick(View view) {
+                // Use String: processName defined above
+                if (operationType == 0) {
+                    //TODO: Run Process
+                }
+                else if (operationType == 1) {
+                    //TODO: Kill Process
+                    // Inputting PID looks easy
+                }
+            }
+        });
+
         return ll;
     }
 
