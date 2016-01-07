@@ -49,15 +49,12 @@ public class MainActivity extends AppCompatActivity {
                 //TODO: Authority Check?
 
                 try {
-//                  clientSocket = new Socket(txtDomainName.getText().toString(),
-//                  Integer.parseInt(txtPort.getText().toString()));
                     overall.DomainName = txtDomainName.getText().toString();
                     overall.Keyword = txtKeyword.getText().toString();
                     overall.clientSocket = new Socket(overall.DomainName,10010);
                     overall.commandOutputStream = new ObjectOutputStream(overall.clientSocket.getOutputStream());
                     overall.commandInputStream = new ObjectInputStream(overall.clientSocket.getInputStream());
                     overall.connected = true;
-
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                     System.err.println("Don't know about host.");
@@ -81,12 +78,9 @@ public class MainActivity extends AppCompatActivity {
                 {
                     //successFlag = true;
 
-                    CountDownLatch cDownLatch = new CountDownLatch(2);
+                    CountDownLatch cDownLatch = new CountDownLatch(1);
                     ClientListenThread clientListenThread = new ClientListenThread(overall.commandInputStream, cDownLatch);
                     new Thread(clientListenThread).start();
-
-                    ClientSendThread clientSendThread = new ClientSendThread(overall.commandOutputStream,cDownLatch);
-                    new Thread(clientSendThread).start();
 
                     try {
                         cDownLatch.await();

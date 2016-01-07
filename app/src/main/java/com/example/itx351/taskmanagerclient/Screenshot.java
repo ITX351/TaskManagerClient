@@ -1,22 +1,27 @@
 package com.example.itx351.taskmanagerclient;
-//
+
+/**
+ * Created by Cheng on 1/7/2016.
+ */
+
 //import java.awt.AWTException;
 //import java.awt.Rectangle;
 //import java.awt.Robot;
 //import java.awt.Toolkit;
 //import java.awt.image.BufferedImage;
-//import java.io.ByteArrayInputStream;
-//import java.io.ByteArrayOutputStream;
-//import java.io.IOException;
-//import java.io.Serializable;
-//
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.Serializable;
+
 //import javax.imageio.ImageIO;
-//
-//public class Screenshot implements Serializable{
-//    private static final long serialVersionUID = 1L;
+
+public class Screenshot implements Serializable{
+    private static final long serialVersionUID = 1L;
 //    transient public BufferedImage capture;
-//    byte[] imageInByte;
-//
+    byte[] imageInByte;
+
+
 //    void capture() throws AWTException{
 //        Rectangle screenRect = new Rectangle(Toolkit.getDefaultToolkit().getScreenSize());
 //        this.capture = new Robot().createScreenCapture(screenRect);
@@ -38,4 +43,14 @@ package com.example.itx351.taskmanagerclient;
 //            e.printStackTrace();
 //        }
 //    }
-//}
+	/*
+	private void writeObject(ObjectOutputStream out) throws IOException {
+	    out.defaultWriteObject();
+	    ImageIO.write(capture, "png", out); // png is lossless
+	}
+	private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+	    in.defaultReadObject();
+	    ImageIO.read(in);
+	}
+	*/
+}

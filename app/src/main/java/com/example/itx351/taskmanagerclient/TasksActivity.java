@@ -13,60 +13,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
-//import android.widget.Button;
-//public class TasksActivity extends AppCompatActivity
-//        implements NavigationView.OnNavigationItemSelectedListener{
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_tasks);
-//
-//        Button btnRun = (Button)findViewById(R.id.tasks_btnRun);
-//        btnRun.setOnClickListener(new Button.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent runActivity = new Intent();
-//                runActivity.setClass(TasksActivity.this, RunActivity.class);
-//                startActivity(runActivity);
-//            }
-//        });
-//        Button btnShutdown = (Button)findViewById(R.id.tasks_btnShutdown);
-//        btnRun.setOnClickListener(new Button.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent runActivity = new Intent();
-//                runActivity.setClass(TasksActivity.this, RunActivity.class);
-//                startActivity(runActivity);
-//            }
-//        });
-//        Button btnKillProcess = (Button)findViewById(R.id.tasks_btnKillProcess);
-//        btnRun.setOnClickListener(new Button.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent runActivity = new Intent();
-//                runActivity.setClass(TasksActivity.this, RunActivity.class);
-//                startActivity(runActivity);
-//            }
-//        });
-//        Button btnDisconnect = (Button)findViewById(R.id.tasks_btnDisconnect);
-//        btnRun.setOnClickListener(new Button.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent runActivity = new Intent();
-//                runActivity.setClass(TasksActivity.this, RunActivity.class);
-//                startActivity(runActivity);
-//            }
-//        });
-//        Button btnScreenshot = (Button)findViewById(R.id.tasks_btnScreenShot);
-//        btnRun.setOnClickListener(new Button.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent runActivity = new Intent();
-//                runActivity.setClass(TasksActivity.this, RunActivity.class);
-//                startActivity(runActivity);
-//            }
-//        });
-//
-//    }
-//}
-
-
 public class TasksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -154,11 +100,14 @@ public class TasksActivity extends AppCompatActivity
             startActivity(runActivity);
         } else if (id == R.id.navScreenshot) {
             Intent screenshotActivity = new Intent();
+            ClientGeneralThread clientGeneralThread = new ClientGeneralThread(
+                     DataHead.getDataHead("screenshotCommandHead"), overall.commandOutputStream, overall);
+            clientGeneralThread.start();
             screenshotActivity.setClass(TasksActivity.this, ScreenshotActivity.class);
             startActivity(screenshotActivity);
         } else if (id == R.id.navKillprocess) {
             Intent killProcessActivity = new Intent();
-            killProcessActivity.setClass(TasksActivity.this, KillProcessActivity.class);
+            //killProcessActivity.setClass(TasksActivity.this, KillProcessActivity.class);
             startActivity(killProcessActivity);
 
         } else if (id == R.id.navShutdown) {
@@ -168,7 +117,7 @@ public class TasksActivity extends AppCompatActivity
             
         } else if (id == R.id.navDisconnect) {
             Intent disconnectActivity = new Intent();
-            disconnectActivity.setClass(TasksActivity.this, DisconnectActivity.class);
+            //disconnectActivity.setClass(TasksActivity.this, DisconnectActivity.class);
             startActivity(disconnectActivity);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
