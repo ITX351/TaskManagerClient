@@ -8,7 +8,7 @@ import java.util.concurrent.CountDownLatch;
 //import javax.xml.crypto.Data;
 
 
-public class ClientListenThread extends ClientMain implements Runnable{
+public class ClientListenThread extends ClientMainThread implements Runnable{
     private CountDownLatch cDownLatch;
     private SysInfo sysInfo = new SysInfo();
 //    private Screenshot screenshot = new Screenshot();

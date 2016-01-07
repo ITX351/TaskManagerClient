@@ -4,7 +4,7 @@ import java.io.*;
 import java.net.*;
 import java.util.concurrent.CountDownLatch;
 
-public class ClientMain {
+public class ClientMainThread {
     protected byte dataHead = (byte)0x00;		//0x00 receiving system resource status
     //0x01 receiving screen capture
     public synchronized byte getDataHead(){
