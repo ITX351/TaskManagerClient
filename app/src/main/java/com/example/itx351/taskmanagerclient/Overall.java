@@ -1,6 +1,7 @@
 package com.example.itx351.taskmanagerclient;
 
 import android.app.Application;
+import android.widget.ImageView;
 
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -16,6 +17,8 @@ public class Overall extends Application{
     public ObjectInputStream commandInputStream;
     public ObjectOutputStream commandOutputStream;
     public boolean connected;
+
+    public ImageView screencapture;
 
     @Override
     public void onCreate()

@@ -22,22 +22,22 @@ public class ClientListenThread extends ClientMainThread implements Runnable{
 
     public void run(){
 
-        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-hh-mm");
-        while(this.cDownLatch.getCount()>1){
+//        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-hh-mm");
+        while(this.cDownLatch.getCount()>0){
             try{
-                byte dataHead  = (byte) this.in.readObject();
-                if(dataHead == (byte)0x00){
+                byte head  = (byte) this.in.readObject();
+                if(head == DataHead.getDataHead("sysInfoHead")){
                     this.sysInfo = (SysInfo) this.in.readObject();
                     System.out.println("Client received " + this.sysInfo.cpuCombined);
                 }
-//                else if (dataHead == (byte)0x01) {
-//                    this.screenshot = (Screenshot)this.in.readObject();
-//                    this.screenshot.byteToImage();
-//                    Date now = new Date(System.currentTimeMillis());
-//                    ImageIO.write(this.screenshot.capture, "png", new File("screenshot"+sdf.format(now)+".png"));
-//                    System.out.println("Client received screenshot");
+//                else if (head == DataHead.getDataHead("screenshotHead")) {
+//                    ClientGeneralThread clientGeneralThread = new
+//                            ClientGeneralThread(head, this.in);
+//                    clientGeneralThread.run();
 //                }
-                Thread.sleep(30000);
+                else{
+                }
+                Thread.sleep(100000);
             }
             catch (Exception e){
                 e.printStackTrace();

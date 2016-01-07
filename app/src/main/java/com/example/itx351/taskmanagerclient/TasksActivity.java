@@ -14,60 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
-//import android.widget.Button;
-//public class TasksActivity extends AppCompatActivity
-//        implements NavigationView.OnNavigationItemSelectedListener{
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_tasks);
-//
-//        Button btnRun = (Button)findViewById(R.id.tasks_btnRun);
-//        btnRun.setOnClickListener(new Button.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent runActivity = new Intent();
-//                runActivity.setClass(TasksActivity.this, RunActivity.class);
-//                startActivity(runActivity);
-//            }
-//        });
-//        Button btnShutdown = (Button)findViewById(R.id.tasks_btnShutdown);
-//        btnRun.setOnClickListener(new Button.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent runActivity = new Intent();
-//                runActivity.setClass(TasksActivity.this, RunActivity.class);
-//                startActivity(runActivity);
-//            }
-//        });
-//        Button btnKillProcess = (Button)findViewById(R.id.tasks_btnKillProcess);
-//        btnRun.setOnClickListener(new Button.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent runActivity = new Intent();
-//                runActivity.setClass(TasksActivity.this, RunActivity.class);
-//                startActivity(runActivity);
-//            }
-//        });
-//        Button btnDisconnect = (Button)findViewById(R.id.tasks_btnDisconnect);
-//        btnRun.setOnClickListener(new Button.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent runActivity = new Intent();
-//                runActivity.setClass(TasksActivity.this, RunActivity.class);
-//                startActivity(runActivity);
-//            }
-//        });
-//        Button btnScreenshot = (Button)findViewById(R.id.tasks_btnScreenShot);
-//        btnRun.setOnClickListener(new Button.OnClickListener() {
-//            public void onClick(View view) {
-//                Intent runActivity = new Intent();
-//                runActivity.setClass(TasksActivity.this, RunActivity.class);
-//                startActivity(runActivity);
-//            }
-//        });
-//
-//    }
-//}
-
-
 public class TasksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -176,6 +122,7 @@ public class TasksActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         switch (id) {
             case R.id.navInformation:
                 changeFragment(fragmentType.InfoPage);
@@ -187,6 +134,8 @@ public class TasksActivity extends AppCompatActivity
                 changeFragment(fragmentType.RunProcessPage);
                 break;
             case R.id.navScreenshot:
+                ClientGeneralThread clientGeneralThread = new ClientGeneralThread(
+                        DataHead.getDataHead("screenshotCommandHead"), overall.commandOutputStream, overall);
                 break;
             case R.id.navKillProcess:
                 changeFragment(fragmentType.KillProcessPage);
