@@ -1,8 +1,10 @@
 package com.example.itx351.taskmanagerclient;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -11,7 +13,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 
 //import android.widget.Button;
 //public class TasksActivity extends AppCompatActivity
@@ -70,7 +71,39 @@ import android.widget.TextView;
 public class TasksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    Overall overall;
+    public Overall overall;
+    private FragmentManager fragmentManager;
+
+    enum fragmentType {
+        InfoPage, TaskPage, RunProcessPage, KillProcessPage
+    }
+
+    private void changeFragment(fragmentType now)
+    {
+        Fragment fragment;
+        switch (now) {
+            case RunProcessPage:
+                fragment = ProcessFragment.newInstance(0);
+                break;
+            case KillProcessPage:
+                fragment = ProcessFragment.newInstance(1);
+                break;
+            case TaskPage:
+                fragment = new Fragment();
+                break;
+            case InfoPage:
+                fragment = InfoFragment.newInstance();
+                break;
+            default:
+                fragment = new Fragment();
+                break;
+        }
+
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.tasks_content, fragment);
+//        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,12 +111,7 @@ public class TasksActivity extends AppCompatActivity
         setContentView(R.layout.activity_tasks);
 
         overall = (Overall)getApplication();
-
-        TextView lblDomainNameContent = (TextView)findViewById(R.id.sys_lblDomainNameContent);
-        TextView lblKeywordContent = (TextView)findViewById(R.id.sys_lblKeywordContent);
-
-        lblDomainNameContent.setText(overall.DomainName);
-        lblKeywordContent.setText(overall.Keyword);
+        fragmentManager = getSupportFragmentManager();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -148,28 +176,26 @@ public class TasksActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.navRun) {
-            Intent runActivity = new Intent();
-            runActivity.setClass(TasksActivity.this, RunActivity.class);
-            startActivity(runActivity);
-        } else if (id == R.id.navScreenshot) {
-            Intent screenshotActivity = new Intent();
-            screenshotActivity.setClass(TasksActivity.this, ScreenshotActivity.class);
-            startActivity(screenshotActivity);
-        } else if (id == R.id.navKillprocess) {
-            Intent killProcessActivity = new Intent();
-            killProcessActivity.setClass(TasksActivity.this, KillProcessActivity.class);
-            startActivity(killProcessActivity);
+        switch (id) {
+            case R.id.navInformation:
+                changeFragment(fragmentType.InfoPage);
+                break;
+            case R.id.navTasks:
+                changeFragment(fragmentType.TaskPage);
+                break;
+            case R.id.navRunProcess:
+                changeFragment(fragmentType.RunProcessPage);
+                break;
+            case R.id.navScreenshot:
+                break;
+            case R.id.navKillProcess:
+                changeFragment(fragmentType.KillProcessPage);
+                break;
+            case R.id.navShutdown:
+                break;
+            case R.id.navDisconnect:
+                break;
 
-        } else if (id == R.id.navShutdown) {
-//            Intent shutdownActivity = new Intent();
-//            shutdownActivity.setClass(TasksActivity.this, ShutdownActivity.class);
-//            startActivity(shutdownActivity);
-            
-        } else if (id == R.id.navDisconnect) {
-            Intent disconnectActivity = new Intent();
-            disconnectActivity.setClass(TasksActivity.this, DisconnectActivity.class);
-            startActivity(disconnectActivity);
         }
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);

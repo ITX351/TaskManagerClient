@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/pro_lblProcessName"
+        android:id="@+id/pro_lblProcessName"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="174dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:id="@+id/pro_txtProcessName"
+        android:ems="10"
+        android:layout_below="@+id/pro_lblProcessName"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Button"
+        android:id="@+id/pro_btnOK"
+        android:layout_below="@+id/pro_txtProcessName"
+        android:layout_alignRight="@+id/pro_lblProcessName"
+        android:layout_alignEnd="@+id/pro_lblProcessName" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/DefaultString"
+        android:id="@+id/pro_lblOperation"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/pro_txtProcessName"
+        android:layout_alignStart="@+id/pro_txtProcessName"
+        android:layout_marginTop="70dp" />
+</RelativeLayout>
