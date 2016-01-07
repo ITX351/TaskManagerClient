@@ -21,11 +21,17 @@ public final class DataHead {
 		else if (type.equals("sceenshotCommandHead")){
 			return 0x60;
 		}
-		else if (type.equals("sdprogramCommandHead")){
+		else if (type.equals("disconnectCommandHead")){
 			return 0x61;
 		}
 		else if (type.equals("killProcessCommandHead")){
 			return 0x62;
+		}
+		else if (type.equals("runProcessCommandHead")){
+			return 0x63;
+		}
+		else if (type.equals("shutdownCommandHead")){
+			return 0x64;
 		}
 		else {
 			return 0x74;

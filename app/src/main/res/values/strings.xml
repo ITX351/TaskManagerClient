@@ -46,5 +46,6 @@
     <string name="pro_btnOK">OK</string>
     <string name="pro_RunProcess">Run process</string>
     <string name="pro_KillProcess">Kill process</string>
-    
+
+    <string name="title_activity_screenshot">Screenshot</string>
 </resources>

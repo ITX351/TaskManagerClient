@@ -121,7 +121,7 @@ public class TasksActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
+        ClientGeneralThread clientGeneralThread;
 
         switch (id) {
             case R.id.navInformation:
@@ -134,15 +134,22 @@ public class TasksActivity extends AppCompatActivity
                 changeFragment(fragmentType.RunProcessPage);
                 break;
             case R.id.navScreenshot:
-                ClientGeneralThread clientGeneralThread = new ClientGeneralThread(
+                clientGeneralThread = new ClientGeneralThread(
                         DataHead.getDataHead("screenshotCommandHead"), overall.commandOutputStream, overall);
+                clientGeneralThread.start();
                 break;
             case R.id.navKillProcess:
                 changeFragment(fragmentType.KillProcessPage);
                 break;
             case R.id.navShutdown:
+                clientGeneralThread = new ClientGeneralThread(
+                        DataHead.getDataHead("shutdownCommandHead"), overall.commandOutputStream, overall);
+                clientGeneralThread.start();
                 break;
             case R.id.navDisconnect:
+                clientGeneralThread = new ClientGeneralThread(
+                        DataHead.getDataHead("disconnectCommandHead"), overall.commandOutputStream, overall);
+                clientGeneralThread.start();
                 break;
 
         }

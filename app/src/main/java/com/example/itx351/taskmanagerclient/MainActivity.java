@@ -69,33 +69,31 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                CountDownLatch cDownLatch = new CountDownLatch(1);
+                ClientListenThread clientListenThread = new ClientListenThread(overall.commandInputStream, cDownLatch);
+                new Thread(clientListenThread).start();
+
+//                try {
+//                    cDownLatch.await();
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
+//                System.out.println("Client start to close");
+//                try {
+//                    overall.commandOutputStream.close(); //关闭Socket输出流
+//                    overall.commandInputStream.close(); //关闭Socket输入流
+//                    overall.clientSocket.close();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                System.out.println("Client close work finished");
+
                 Intent tasksActivity = new Intent();
                 tasksActivity.setClass(MainActivity.this, TasksActivity.class);
                 startActivity(tasksActivity);
                 finish(); //In case of Backing to Login Activity
 
-                if (false)
-                {
-                    CountDownLatch cDownLatch = new CountDownLatch(1);
-                    ClientListenThread clientListenThread = new ClientListenThread(overall.commandInputStream, cDownLatch);
-                    new Thread(clientListenThread).start();
-
-                    try {
-                        cDownLatch.await();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-
-                    System.out.println("Client start to close");
-                    try {
-                        overall.commandOutputStream.close(); //关闭Socket输出流
-                        overall.commandInputStream.close(); //关闭Socket输入流
-                        overall.clientSocket.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("Client close work finished");
-                }
             }
         });
     }

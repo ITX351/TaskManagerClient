@@ -1,5 +1,7 @@
 package com.example.itx351.taskmanagerclient;
 
+import android.util.Log;
+
 import java.io.ObjectInputStream;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.CountDownLatch;
@@ -28,6 +30,7 @@ public class ClientListenThread extends ClientMainThread implements Runnable{
                 byte head  = (byte) this.in.readObject();
                 if(head == DataHead.getDataHead("sysInfoHead")){
                     this.sysInfo = (SysInfo) this.in.readObject();
+                    Log.d("sysinfo", String.valueOf(this.sysInfo.cpuSys));
                     System.out.println("Client received " + this.sysInfo.cpuCombined);
                 }
 //                else if (head == DataHead.getDataHead("screenshotHead")) {
@@ -37,7 +40,7 @@ public class ClientListenThread extends ClientMainThread implements Runnable{
 //                }
                 else{
                 }
-                Thread.sleep(100000);
+                Thread.sleep(10000);
             }
             catch (Exception e){
                 e.printStackTrace();

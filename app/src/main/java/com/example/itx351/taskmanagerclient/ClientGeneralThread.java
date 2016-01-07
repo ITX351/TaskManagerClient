@@ -5,6 +5,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
 import android.graphics.BitmapFactory;
+import android.util.Log;
 
 
 public class ClientGeneralThread extends Thread {
@@ -32,6 +33,7 @@ public class ClientGeneralThread extends Thread {
 	public  void run(){
 		if (this.out!=null){
 			try {
+				Log.d("Thread","Run into sending command");
 				out.writeObject(this.dataHead);
 				out.flush();
 			} catch (IOException e) {
