@@ -3,13 +3,19 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/navRun"
+            android:id="@+id/navInformation"
+            android:title="@string/tasks_btnInformation" />
+        <item
+            android:id="@+id/navTasks"
+            android:title="@string/tasks_btnTasks" />
+        <item
+            android:id="@+id/navRunProcess"
             android:title="@string/tasks_btnRun" />
         <item
             android:id="@+id/navScreenshot"
             android:title="@string/tasks_btnScreenShot" />
         <item
-            android:id="@+id/navKillprocess"
+            android:id="@+id/navKillProcess"
             android:title="@string/tasks_btnKillProcess" />
         <item
             android:id="@+id/navShutdown"

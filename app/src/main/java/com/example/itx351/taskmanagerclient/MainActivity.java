@@ -76,8 +76,6 @@ public class MainActivity extends AppCompatActivity {
 
                 if (false)
                 {
-                    //successFlag = true;
-
                     CountDownLatch cDownLatch = new CountDownLatch(1);
                     ClientListenThread clientListenThread = new ClientListenThread(overall.commandInputStream, cDownLatch);
                     new Thread(clientListenThread).start();

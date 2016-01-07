@@ -4,9 +4,9 @@ import java.io.*;
 import java.net.*;
 import java.util.concurrent.CountDownLatch;
 
-//public class ClientMainThread {
-//
-//    public static void main(String[] args) throws IOException {
+public class ClientMainThread {
+
+    public static void main(String[] args) throws IOException {
 //        Socket clientSocket = null;
 //        ObjectOutputStream commandOutStream = null;
 //        ObjectInputStream in = null;
@@ -40,5 +40,5 @@ import java.util.concurrent.CountDownLatch;
 //        in.close(); //关闭Socket输入流
 //        clientSocket.close();
 //        System.out.println("Client close work finished");
-//    }
-//}
+    }
+}
