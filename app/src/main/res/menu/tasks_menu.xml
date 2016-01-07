@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navRun"
+            android:title="@string/tasks_btnRun" />
+        <item
+            android:id="@+id/navScreenshot"
+            android:title="@string/tasks_btnScreenShot" />
+        <item
+            android:id="@+id/navKillprocess"
+            android:title="@string/tasks_btnKillProcess" />
+        <item
+            android:id="@+id/navShutdown"
+            android:title="@string/tasks_btnShutdown" />
+        <item
+            android:id="@+id/navDisconnect"
+            android:title="@string/tasks_btnDisconnect" />
+    </group>
+
+    <!--<item android:title="Communicate">-->
+        <!--<menu>-->
+            <!--<item-->
+                <!--android:id="@+id/nav_share"-->
+                <!--android:title="Share" />-->
+            <!--<item-->
+                <!--android:id="@+id/nav_send"-->
+                <!--android:title="Send" />-->
+        <!--</menu>-->
+    <!--</item>-->
+
+</menu>

@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1">
+
+    <TextView
+        android:layout_width="148dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Remote Status"
+        android:id="@+id/txt_remoteStatus"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="100dp"
+        android:layout_weight="0.09" />
+
+    <TextView
+        android:layout_width="70dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="CPU"
+        android:id="@+id/txt_cpu"
+        android:layout_weight="0.21"
+        android:layout_below="@id/txt_remoteStatus"
+        android:layout_marginTop="80dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="0"
+        android:id="@+id/txt_cpuData"
+        android:layout_alignBottom="@id/txt_cpu"
+        android:layout_toRightOf="@+id/txt_cpu"
+        />
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Memory"
+        android:id="@+id/txt_memory"
+        android:layout_below="@id/txt_cpu"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="0"
+        android:id="@+id/txt_memData"
+        android:layout_alignBottom="@id/txt_memory"
+        android:layout_toRightOf="@+id/txt_memory"/>
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Disk"
+        android:id="@+id/txt_disk"
+        android:layout_weight="0.21"
+        android:layout_below="@id/txt_memory"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="0"
+        android:id="@+id/txt_diskData"
+        android:layout_alignBottom="@id/txt_disk"
+        android:layout_toRightOf="@+id/txt_disk"
+        />
+
+
+    <TextView
+        android:layout_height="wrap_content"
+        android:layout_width="70dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Network"
+        android:id="@+id/txt_network"
+        android:layout_weight="0.21"
+        android:layout_below="@id/txt_disk"
+        android:layout_marginTop="40dp"
+        android:layout_marginLeft="80dp"
+        android:layout_marginRight="80dp"
+        />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="0"
+        android:id="@+id/txt_netData"
+        android:layout_alignBottom="@id/txt_network"
+        android:layout_toRightOf="@+id/txt_network"
+        />
+
+
+
+
+
+</RelativeLayout>
