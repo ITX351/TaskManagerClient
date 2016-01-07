@@ -7,6 +7,10 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 
 /**
@@ -47,8 +51,17 @@ public class ProcessFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_process, container, false);
+        RelativeLayout ll = (RelativeLayout)inflater.inflate(R.layout.fragment_process, container, false);
+
+        TextView lblOperation = (TextView)ll.findViewById(R.id.pro_lblOperation);
+
+        if (operationType == 0) {
+            lblOperation.setText(R.string.pro_RunProcess);
+        }
+        else if (operationType == 1) {
+            lblOperation.setText(R.string.pro_KillProcess);
+        }
+        return ll;
     }
 
 //    // TODO: Rename method, update argument and hook method into UI event

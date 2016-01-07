@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
@@ -35,19 +36,20 @@ public class InfoFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         overall = (Overall)getActivity().getApplication();
-
-//        TextView lblDomainNameContent = (TextView)getActivity().findViewById(R.id.inf_lblDomainNameContent);
-//        TextView lblKeywordContent = (TextView)getActivity().findViewById(R.id.inf_lblKeywordContent);
-//
-//        lblDomainNameContent.setText(overall.DomainName);
-//        lblKeywordContent.setText(overall.Keyword);
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_info, container, false);
+        RelativeLayout ll = (RelativeLayout)inflater.inflate(R.layout.fragment_info, container, false);
+
+        TextView lblDomainNameContent = (TextView)ll.findViewById(R.id.inf_lblDomainNameContent);
+        TextView lblKeywordContent = (TextView)ll.findViewById(R.id.inf_lblKeywordContent);
+
+        lblDomainNameContent.setText(overall.DomainName);
+        lblKeywordContent.setText(overall.Keyword);
+
+        return ll;
     }
 
 //    // TODO: Rename method, update argument and hook method into UI event
