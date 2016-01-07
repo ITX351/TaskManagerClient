@@ -29,16 +29,16 @@ public class TasksActivity extends AppCompatActivity
         Fragment fragment;
         switch (now) {
             case RunProcessPage:
-                fragment = ProcessFragment.newInstance(0);
+                fragment = overall.nowProcessFragment = ProcessFragment.newInstance(0);
                 break;
             case KillProcessPage:
-                fragment = ProcessFragment.newInstance(1);
+                fragment = overall.nowProcessFragment = ProcessFragment.newInstance(1);
                 break;
             case TaskPage:
                 fragment = new Fragment();
                 break;
             case InfoPage:
-                fragment = InfoFragment.newInstance();
+                fragment = overall.nowInfoFragment = InfoFragment.newInstance();
                 break;
             default:
                 fragment = new Fragment();

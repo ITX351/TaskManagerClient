@@ -22,6 +22,9 @@ public class InfoFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
 
     Overall overall;
+    RelativeLayout ll;
+    private TextView lblCPUContent, lblMemoryContent, lblDiskContent,
+            lblNetworkContent, lblDomainNameContent, lblKeywordContent;
 
     public InfoFragment() {
         // Required empty public constructor
@@ -41,15 +44,34 @@ public class InfoFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        RelativeLayout ll = (RelativeLayout)inflater.inflate(R.layout.fragment_info, container, false);
+        ll = (RelativeLayout)inflater.inflate(R.layout.fragment_info, container, false);
 
-        TextView lblDomainNameContent = (TextView)ll.findViewById(R.id.inf_lblDomainNameContent);
-        TextView lblKeywordContent = (TextView)ll.findViewById(R.id.inf_lblKeywordContent);
+        lblCPUContent = (TextView)ll.findViewById(R.id.inf_lblCPUContent);
+        lblMemoryContent = (TextView)ll.findViewById(R.id.inf_lblMemoryContent);
+        lblDiskContent = (TextView)ll.findViewById(R.id.inf_lblDiskContent);
+        lblNetworkContent = (TextView)ll.findViewById(R.id.inf_lblNetworkContent);
+        lblDomainNameContent = (TextView)ll.findViewById(R.id.inf_lblDomainNameContent);
+        lblKeywordContent = (TextView)ll.findViewById(R.id.inf_lblKeywordContent);
 
         lblDomainNameContent.setText(overall.DomainName);
         lblKeywordContent.setText(overall.Keyword);
 
         return ll;
+    }
+
+    public class modifier implements Runnable {
+        String CPU, Memory, Disk, Network;
+        public modifier(String _CPU, String _Memory, String _Disk, String _Network) {
+            CPU = _CPU; Memory = _Memory; Disk = _Disk; Network = _Network;
+        }
+
+        @Override
+        public void run() {
+            lblCPUContent.setText(CPU);
+            lblMemoryContent.setText(Memory);
+            lblDiskContent.setText(Disk);
+            lblNetworkContent.setText(Network);
+        }
     }
 
 //    // TODO: Rename method, update argument and hook method into UI event

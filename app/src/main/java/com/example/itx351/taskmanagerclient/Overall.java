@@ -18,6 +18,9 @@ public class Overall extends Application{
     public ObjectOutputStream commandOutputStream;
     public boolean connected;
 
+    public ProcessFragment nowProcessFragment;
+    public InfoFragment nowInfoFragment;
+
     public ImageView screencapture;
 
     @Override
@@ -25,5 +28,7 @@ public class Overall extends Application{
     {
         super.onCreate();
         connected = false;
+        nowProcessFragment = null;
+        nowInfoFragment = null;
     }
 }
