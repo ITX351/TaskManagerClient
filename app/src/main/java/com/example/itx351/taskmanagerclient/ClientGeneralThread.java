@@ -15,6 +15,7 @@ public class ClientGeneralThread extends Thread {
 	byte dataHead;
 	ObjectInputStream in;
 	ObjectOutputStream out;
+	String command;
 
 	public  ClientGeneralThread(byte _dataHead, ObjectInputStream _in, Overall _overall){
 		this.dataHead = _dataHead;
@@ -27,19 +28,29 @@ public class ClientGeneralThread extends Thread {
 		this.out = _out ;
 		this.in = null;
 		this.overall = _overall;
+		this.command = null;
+	}
+	public  ClientGeneralThread(byte _dataHead, ObjectOutputStream _out, Overall _overall, String command){
+		this.dataHead = _dataHead;
+		this.out = _out ;
+		this.in = null;
+		this.overall = _overall;
+		this.command = command;
 	}
 
 	@Override
 	public  void run(){
 		if (this.out!=null){
 			try {
-				Log.d("Thread","Run into sending command");
+				Log.d("Thread", "Run into sending command");
 				out.writeObject(this.dataHead);
+				if (this.command!=null){
+					out.writeObject(this.command);
+				}
 				out.flush();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			//TODO other commands may have longer bytes, e.g. cmd abc.exe 123
 		}
 		else if (this.in != null){
 			if (this.dataHead == DataHead.getDataHead("screenshot")){

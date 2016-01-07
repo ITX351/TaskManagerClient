@@ -32,6 +32,14 @@ public class ClientListenThread extends ClientMainThread implements Runnable{
                     this.sysInfo = (SysInfo) this.in.readObject();
                     Log.d("sysinfo", String.valueOf(this.sysInfo.cpuSys));
                     System.out.println("Client received " + this.sysInfo.cpuCombined);
+                    int size = this.sysInfo.procList.size();
+                    System.out.println("size:" + size);
+
+                    //遍历Vector中的元素
+                    System.out.println("top 10 processes:");
+                    for(int i = 0;i < 10;i++){
+                        System.out.println(this.sysInfo.procList.get(i));
+                    }
                 }
 //                else if (head == DataHead.getDataHead("screenshotHead")) {
 //                    ClientGeneralThread clientGeneralThread = new
