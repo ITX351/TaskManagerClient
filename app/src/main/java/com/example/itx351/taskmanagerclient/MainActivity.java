@@ -2,8 +2,7 @@ package com.example.itx351.taskmanagerclient;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.os.StrictMode;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -12,7 +11,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.os.StrictMode;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -23,15 +21,19 @@ import java.util.concurrent.CountDownLatch;
 
 public class MainActivity extends AppCompatActivity {
 
+    private Overall overall;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        overall = (Overall)getApplication();
+
         if (android.os.Build.VERSION.SDK_INT > 9) {
             StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
             StrictMode.setThreadPolicy(policy);
         }
-
 
         //TODO: Auto Connection
 
@@ -42,21 +44,19 @@ public class MainActivity extends AppCompatActivity {
         final EditText txtDomainName = (EditText)findViewById(R.id.main_txtDomainName);
         final EditText txtKeyword = (EditText)findViewById(R.id.main_txtKeyword);
 
-
         btnConnect.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
                 //TODO: Authority Check?
-                Socket clientSocket = null;
-                ObjectOutputStream commandOutStream = null;
-                ObjectInputStream in = null;
-                boolean successFlag =  false;
 
                 try {
-//                    clientSocket = new Socket(txtDomainName.getText().toString(),
-//                                                Integer.parseInt(txtPort.getText().toString()));
-                    clientSocket = new Socket(txtDomainName.getText().toString(),10010);
-                    commandOutStream = new ObjectOutputStream(clientSocket.getOutputStream());
-                    in = new ObjectInputStream(clientSocket.getInputStream());
+//                  clientSocket = new Socket(txtDomainName.getText().toString(),
+//                  Integer.parseInt(txtPort.getText().toString()));
+                    overall.DomainName = txtDomainName.getText().toString();
+                    overall.Keyword = txtKeyword.getText().toString();
+                    overall.clientSocket = new Socket(overall.DomainName,10010);
+                    overall.commandOutputStream = new ObjectOutputStream(overall.clientSocket.getOutputStream());
+                    overall.commandInputStream = new ObjectInputStream(overall.clientSocket.getInputStream());
+                    overall.connected = true;
 
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
@@ -72,16 +72,20 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
+                Intent tasksActivity = new Intent();
+                tasksActivity.setClass(MainActivity.this, TasksActivity.class);
+                startActivity(tasksActivity);
+                finish(); //In case of Backing to Login Activity
 
-                if(successFlag)
+                if (false)
                 {
                     //successFlag = true;
 
                     CountDownLatch cDownLatch = new CountDownLatch(2);
-                    ClientListenThread clientListenThread = new ClientListenThread(in, cDownLatch);
+                    ClientListenThread clientListenThread = new ClientListenThread(overall.commandInputStream, cDownLatch);
                     new Thread(clientListenThread).start();
 
-                    ClientSendThread clientSendThread = new ClientSendThread(commandOutStream,cDownLatch);
+                    ClientSendThread clientSendThread = new ClientSendThread(overall.commandOutputStream,cDownLatch);
                     new Thread(clientSendThread).start();
 
                     try {
@@ -92,22 +96,14 @@ public class MainActivity extends AppCompatActivity {
 
                     System.out.println("Client start to close");
                     try {
-                        commandOutStream.close(); //关闭Socket输出流
-                        in.close(); //关闭Socket输入流
-                        clientSocket.close();
+                        overall.commandOutputStream.close(); //关闭Socket输出流
+                        overall.commandInputStream.close(); //关闭Socket输入流
+                        overall.clientSocket.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-
                     System.out.println("Client close work finished");
-
                 }
-//                Intent tasksActivity = new Intent();
-//                tasksActivity.putExtra("DomainName", txtDomainName.getText());
-//                tasksActivity.putExtra("Keyword", txtKeyword.getText());
-//                tasksActivity.setClass(MainActivity.this, TasksActivity.class);
-//                startActivity(tasksActivity);
-//                finish(); //In case of Backing to Login Activity
             }
         });
     }

@@ -1,11 +1,7 @@
 package com.example.itx351.taskmanagerclient;
 
 import android.content.Intent;
-//import android.widget.Button;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -14,6 +10,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.TextView;
+
+//import android.widget.Button;
 //public class TasksActivity extends AppCompatActivity
 //        implements NavigationView.OnNavigationItemSelectedListener{
 //
@@ -70,10 +70,21 @@ import android.view.MenuItem;
 public class TasksActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    Overall overall;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
+
+        overall = (Overall)getApplication();
+
+        TextView lblDomainNameContent = (TextView)findViewById(R.id.sys_lblDomainNameContent);
+        TextView lblKeywordContent = (TextView)findViewById(R.id.sys_lblKeywordContent);
+
+        lblDomainNameContent.setText(overall.DomainName);
+        lblKeywordContent.setText(overall.Keyword);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -151,10 +162,10 @@ public class TasksActivity extends AppCompatActivity
             startActivity(killProcessActivity);
 
         } else if (id == R.id.navShutdown) {
-            Intent shutdownActivity = new Intent();
-            shutdownActivity.setClass(TasksActivity.this, ShutdownActivity.class);
-            startActivity(shutdownActivity);
-
+//            Intent shutdownActivity = new Intent();
+//            shutdownActivity.setClass(TasksActivity.this, ShutdownActivity.class);
+//            startActivity(shutdownActivity);
+            
         } else if (id == R.id.navDisconnect) {
             Intent disconnectActivity = new Intent();
             disconnectActivity.setClass(TasksActivity.this, DisconnectActivity.class);

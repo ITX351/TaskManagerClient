@@ -3,8 +3,8 @@
     <string name="action_settings">Settings</string>
 
     <!-- MainActivity -->
-    <string name="main_lblDomainName">Domain Name:</string>
-    <string name="main_lblKeyword">Keyword:</string>
+    <string name="main_lblDomainName">Domain Name</string>
+    <string name="main_lblKeyword">Keyword</string>
     <string name="main_btnConnect">Connect</string>
 
     <!-- TasksActivity -->

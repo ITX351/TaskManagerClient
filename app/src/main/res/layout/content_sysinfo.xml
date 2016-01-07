@@ -12,9 +12,11 @@
         android:text="Remote Status"
         android:id="@+id/txt_remoteStatus"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="100dp"
-        android:layout_weight="0.09" />
+        android:layout_marginTop="44dp"
+        android:layout_weight="0.09"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/txt_memData"
+        android:layout_alignEnd="@+id/txt_memData" />
 
     <TextView
         android:layout_width="70dp"
@@ -23,11 +25,10 @@
         android:text="CPU"
         android:id="@+id/txt_cpu"
         android:layout_weight="0.21"
-        android:layout_below="@id/txt_remoteStatus"
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="80dp"
-        android:layout_marginRight="80dp"
-        />
+        android:layout_marginTop="46dp"
+        android:layout_below="@+id/txt_remoteStatus"
+        android:layout_alignLeft="@+id/txt_memory"
+        android:layout_alignStart="@+id/txt_memory" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -106,8 +107,49 @@
         android:layout_toRightOf="@+id/txt_network"
         />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/main_lblDomainName"
+        android:id="@+id/sys_lblDomainName"
+        android:layout_below="@+id/txt_network"
+        android:layout_alignLeft="@+id/txt_network"
+        android:layout_alignStart="@+id/txt_network"
+        android:layout_marginTop="34dp"
+        android:textColor="#ff0000" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="showhere"
+        android:id="@+id/sys_lblDomainNameContent"
+        android:layout_alignTop="@+id/sys_lblDomainName"
+        android:layout_toRightOf="@+id/txt_network"
+        android:layout_toEndOf="@+id/txt_network" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/main_lblKeyword"
+        android:id="@+id/sys_lblKeyword"
+        android:layout_below="@+id/sys_lblDomainName"
+        android:layout_alignLeft="@+id/sys_lblDomainName"
+        android:layout_alignStart="@+id/sys_lblDomainName"
+        android:layout_marginTop="32dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="showhere2"
+        android:id="@+id/sys_lblKeywordContent"
+        android:layout_alignTop="@+id/sys_lblKeyword"
+        android:layout_toRightOf="@+id/txt_network"
+        android:layout_toEndOf="@+id/txt_network"
+        android:textColor="#00ff08" />
 
 
 </RelativeLayout>
