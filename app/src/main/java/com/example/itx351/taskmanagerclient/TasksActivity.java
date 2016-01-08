@@ -29,9 +29,15 @@ public class TasksActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-        Toast.makeText(TasksActivity.this, "ImageName " + item.ImageName + "\nPID " + item.PID +
+        String strShow = "ImageName " + item.ImageName + "\nPID " + item.PID +
                 "\nSessionName " + item.SessionName + "\nSession" + item.Session +
-                "\nMemUsage " + item.MemUsage, Toast.LENGTH_LONG).show();
+                "\nMemUsage " + item.MemUsage;
+        Toast.makeText(TasksActivity.this, strShow, Toast.LENGTH_LONG).show();
+
+//        Dialog dialog = new Dialog(TasksActivity.this);
+//        dialog.setTitle("Process Details");
+//        dialog.setContentView(R.layout.dialog_view);
+
     }
 
     private void changeFragment(fragmentType now)
