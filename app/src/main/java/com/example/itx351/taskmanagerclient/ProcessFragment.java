@@ -2,6 +2,7 @@ package com.example.itx351.taskmanagerclient;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ public class ProcessFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
 
     public ProcessFragment() {
+
         // Required empty public constructor
     }
 
@@ -43,6 +45,7 @@ public class ProcessFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overall = (Overall)getActivity().getApplication();
         if (getArguments() != null) {
             operationType = getArguments().getInt(OPERATION_TYPE);
         }
@@ -55,7 +58,7 @@ public class ProcessFragment extends Fragment {
 
         TextView lblOperation = (TextView)ll.findViewById(R.id.pro_lblOperation);
         final EditText txtProcessName = (EditText)ll.findViewById(R.id.pro_txtProcessName);
-        final String processName = txtProcessName.getText().toString();
+
 
         if (operationType == 0) {
             lblOperation.setText(R.string.pro_RunProcess);
@@ -67,16 +70,20 @@ public class ProcessFragment extends Fragment {
         Button btnOK = (Button)ll.findViewById(R.id.pro_btnOK);
         btnOK.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
+                String processName = txtProcessName.getText().toString();
+                System.out.println("qqqName " + processName);
                 // Use String: processName defined above
                 if (operationType == 0) {
                     clientGeneralThread = new ClientGeneralThread(
                             DataHead.getDataHead("runProcessCommandHead"), overall.commandOutputStream, overall, processName);
                     clientGeneralThread.start();
+                    Log.i("Tag", "runing process");
                 }
                 else if (operationType == 1) {
                     clientGeneralThread = new ClientGeneralThread(
                             DataHead.getDataHead("killProcessCommandHead"), overall.commandOutputStream, overall, processName);
                     clientGeneralThread.start();
+                    Log.i("Tag", "killing process");
                 }
             }
         });
