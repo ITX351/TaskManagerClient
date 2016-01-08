@@ -2,10 +2,13 @@ package com.example.itx351.taskmanagerclient;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,10 +29,52 @@ public class TasksFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
+    public final Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            SysInfo sysInfo = (SysInfo)msg.obj;
+
+            Log.d("sysInfo", "Message received in TasksFragment");
+
+            DummyContent.clear();
+
+            //通过第二行的等号来获取分割点
+            int times = 0, l0 = 0, l1 = 0, l2 = 0, l3 = 0, l4 = 0;
+
+            //Log.d("strInfo", "Length of procList: " + Integer.toString(sysInfo.procList.size()));
+
+            for (String str : sysInfo.procList) {
+                //Log.d("strInfo", Integer.toString(times) + " " + str);
+
+                if (times <= 1) { times++; continue; } //第一行为空 第二行为表头
+                if (times == 2) { //一行等号 对齐下方的各类名字
+                    String[] tmpEquals = str.split(" ");
+                    l0 = tmpEquals[0].length(); //每一串等号的结束点
+                    l1 = tmpEquals[1].length() + l0 + 1;
+                    l2 = tmpEquals[2].length() + l1 + 1;
+                    l3 = tmpEquals[3].length() + l2 + 1;
+                    l4 = tmpEquals[4].length() + l3 + 1;
+                    times++;
+                    continue;
+                }
+
+                String strImageName, strCPU, strSessionName, strSession, strMemUsage;
+                strImageName = str.substring(0, l0).trim();
+                strCPU = str.substring(l0, l1).trim();
+                strSessionName = str.substring(l1, l2).trim();
+                strSession = str.substring(l2, l3).trim();
+                strMemUsage = str.substring(l3, l4).trim();
+
+                DummyContent.DummyItem nowItem = new DummyContent.DummyItem(strImageName, strCPU,
+                        strSessionName, strSession, strMemUsage);
+                DummyContent.addItem(nowItem);
+
+                times++;
+            }
+        }
+    };
+
     public TasksFragment() {
     }
 

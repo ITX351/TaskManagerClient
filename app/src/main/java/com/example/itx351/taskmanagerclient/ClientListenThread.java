@@ -1,6 +1,7 @@
 package com.example.itx351.taskmanagerclient;
 
 import android.os.Message;
+import android.util.Log;
 
 import java.io.ObjectInputStream;
 import java.util.concurrent.CountDownLatch;
@@ -48,8 +49,14 @@ public class ClientListenThread extends ClientMainThread implements Runnable{
                     Message msg = new Message();
                     msg.obj = sysInfo;
 
+                    Log.d("sysInfo", "Before MessageSend");
                     if (overall.nowInfoFragment != null) {
+                        Log.d("sysInfo", "MessageSend to InfoFragment");
                         overall.nowInfoFragment.handler.sendMessage(msg);
+                    }
+                    if (overall.nowTasksFragment != null) {
+                        Log.d("sysInfo", "MessageSend to TasksFragment");
+                        overall.nowTasksFragment.handler.sendMessage(msg);
                     }
                 }
 //                else if (head == DataHead.getDataHead("screenshotHead")) {

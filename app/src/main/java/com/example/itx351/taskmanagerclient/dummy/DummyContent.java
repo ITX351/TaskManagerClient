@@ -23,23 +23,28 @@ public class DummyContent {
      */
     public static final Map<String, DummyItem> ITEM_MAP = new HashMap<String, DummyItem>();
 
-    private static final int COUNT = 25;
+//    private static final int COUNT = 25;
+//
+//    static {
+//        // Add some sample items.
+//        for (int i = 1; i <= COUNT; i++) {
+//            addItem(createDummyItem(i));
+//        }
+//    }
 
-    static {
-        // Add some sample items.
-        for (int i = 1; i <= COUNT; i++) {
-            addItem(createDummyItem(i));
-        }
+    public static void clear() {
+        ITEMS.clear();
+        ITEM_MAP.clear();
     }
 
-    private static void addItem(DummyItem item) {
+    public static void addItem(DummyItem item) {
         ITEMS.add(item);
         ITEM_MAP.put(item.PID, item);
     }
 
-    private static DummyItem createDummyItem(int position) {
-        return new DummyItem("ImageName " + position, String.valueOf(position), "SessionName " + position, "Session " + position, "MemUsage " + position);
-    }
+//    private static DummyItem createDummyItem(int position) {
+//        return new DummyItem("ImageName " + position, String.valueOf(position), "SessionName " + position, "Session " + position, "MemUsage " + position);
+//    }
 
     /**
      * A dummy item representing a piece of content.

@@ -30,7 +30,7 @@ public class TasksActivity extends AppCompatActivity
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
         String strShow = "ImageName " + item.ImageName + "\nPID " + item.PID +
-                "\nSessionName " + item.SessionName + "\nSession" + item.Session +
+                "\nSessionName " + item.SessionName + "\nSession " + item.Session +
                 "\nMemUsage " + item.MemUsage;
         Toast.makeText(TasksActivity.this, strShow, Toast.LENGTH_LONG).show();
 
@@ -43,15 +43,19 @@ public class TasksActivity extends AppCompatActivity
     private void changeFragment(fragmentType now)
     {
         Fragment fragment;
+        overall.nowInfoFragment = null;
+        overall.nowTasksFragment = null;
+//        overall.nowProcessFragment = null;
+
         switch (now) {
             case RunProcessPage:
-                fragment = overall.nowProcessFragment = ProcessFragment.newInstance(0);
+                fragment = /*overall.nowProcessFragment = */ProcessFragment.newInstance(0);
                 break;
             case KillProcessPage:
-                fragment = overall.nowProcessFragment = ProcessFragment.newInstance(1);
+                fragment = /*overall.nowProcessFragment = */ProcessFragment.newInstance(1);
                 break;
             case TaskPage:
-                fragment = TasksFragment.newInstance(1);
+                fragment = overall.nowTasksFragment = TasksFragment.newInstance(1);
                 break;
             case InfoPage:
                 fragment = overall.nowInfoFragment = InfoFragment.newInstance();
