@@ -42,25 +42,18 @@ public class TasksActivity extends AppCompatActivity
     private void changeFragment(fragmentType now)
     {
         Fragment fragment;
-//        overall.nowInfoFragment = null;
-//        overall.nowTasksFragment = null;
-//        overall.nowProcessFragment = null;
 
         switch (now) {
             case RunProcessPage:
-//                overall.nowProcessFragment = ProcessFragment.newInstance(0);
                 fragment = ProcessFragment.newInstance(0);
                 break;
             case KillProcessPage:
-//                overall.nowProcessFragment = ProcessFragment.newInstance(1);
                 fragment = ProcessFragment.newInstance(1);
                 break;
             case TaskPage:
-//                overall.nowTasksFragment = TasksFragment.newInstance(1);
                 fragment = TasksFragment.newInstance(1); //每行显示一个
                 break;
             case InfoPage:
-//                overall.nowInfoFragment = InfoFragment.newInstance();
                 fragment = InfoFragment.newInstance();
                 break;
             default:
@@ -70,7 +63,6 @@ public class TasksActivity extends AppCompatActivity
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.tasks_content, fragment);
-//        transaction.addToBackStack(null);
         transaction.commit();
     }
 

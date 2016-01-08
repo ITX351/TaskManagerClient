@@ -3,15 +3,14 @@ package com.example.itx351.taskmanagerclient;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.itx351.taskmanagerclient.dummy.DummyContent;
 import com.example.itx351.taskmanagerclient.dummy.DummyContent.DummyItem;
@@ -27,13 +26,12 @@ public class TasksFragment extends Fragment {
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
-    public final Handler handler = new Handler(){
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            SysInfo sysInfo = overall.sysInfo;
+    private final Handler handler = new Handler();
 
-            Log.d("sysInfo", "Message received in TasksFragment");
+    private final Runnable task = new Runnable(){
+        @Override
+        public void run() {
+            SysInfo sysInfo = overall.sysInfo;
 
             List<DummyItem> items = new ArrayList<>();
             items.clear();
@@ -67,28 +65,15 @@ public class TasksFragment extends Fragment {
                 items.add(nowItem); //添加元素
             }
             recyclerView.setAdapter(new MyTasksRecyclerViewAdapter(items, mListener)); //更新视图
+
+            Toast.makeText(getActivity(), "List updated.", Toast.LENGTH_SHORT).show();
+            handler.postDelayed(this, Overall.TasksFragmentAutoUpdateSleepTime);
         }
     };
-
-    private final Thread thread = new Thread(new Runnable(){
-        @Override
-        public void run() {
-            while (true) {
-                try {
-                    handler.sendMessage(new Message()); //从sysInfo中获取信息并更新
-                    Thread.sleep(Overall.AutoUpdateSleepTime);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    break;
-                }
-            }
-        }
-    });
 
     public TasksFragment() {
     }
 
-    @SuppressWarnings("unused")
     public static TasksFragment newInstance(int columnCount) {
         TasksFragment fragment = new TasksFragment();
         Bundle args = new Bundle();
@@ -121,9 +106,8 @@ public class TasksFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-        }
 
-        thread.start();
+        }
         return view;
     }
 
@@ -136,12 +120,14 @@ public class TasksFragment extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnListFragmentInteractionListener");
         }
+        handler.post(task);
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mListener = null;
+        handler.removeCallbacks(task);
     }
 
     public interface OnListFragmentInteractionListener {

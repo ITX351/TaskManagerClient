@@ -1,5 +1,6 @@
 package com.example.itx351.taskmanagerclient;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v4.app.Fragment;
@@ -37,7 +38,7 @@ public class InfoFragment extends Fragment {
             lblDiskContent.setText(strDisk);
             lblNetworkContent.setText(strNetwork);
 
-            handler.postDelayed(this, Overall.AutoUpdateSleepTime); //持续更新
+            handler.postDelayed(this, Overall.InfoFragmentAutoUpdateSleepTime); //持续更新
         }
     };
 
@@ -64,9 +65,20 @@ public class InfoFragment extends Fragment {
         lblMemoryContent = (TextView)ll.findViewById(R.id.inf_lblMemoryContent);
         lblDiskContent = (TextView)ll.findViewById(R.id.inf_lblDiskContent);
         lblNetworkContent = (TextView)ll.findViewById(R.id.inf_lblNetworkContent);
-        ((TextView)ll.findViewById(R.id.inf_lblDomainNameContent)).setText(overall.DomainName);
+        ((TextView)ll.findViewById(R.id.inf_lblDomainNameContent)).setText(overall.DomainName); //显示域名
 
-        handler.post(task);
         return ll;
+    }
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        handler.post(task);
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        handler.removeCallbacks(task);
     }
 }

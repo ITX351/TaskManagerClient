@@ -24,19 +24,16 @@ public class ClientListenThread extends ClientMainThread implements Runnable{
 //        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-hh-mm");
         while (this.cDownLatch.getCount() > 0){
             try{
-                byte head  = (byte) this.in.readObject();
+                byte head  = (byte)in.readObject();
                 if(head == DataHead.getDataHead("sysInfoHead")) {
-                    SysInfo sysInfo = (SysInfo) this.in.readObject();
-                    System.out.println("Client received " + sysInfo.cpuCombined);
-
-                    overall.sysInfo = sysInfo;
+                    overall.sysInfo = (SysInfo)in.readObject();
                 }
 //                else if (head == DataHead.getDataHead("screenshotHead")) {
 //                    ClientGeneralThread clientGeneralThread = new
 //                            ClientGeneralThread(head, this.in);
 //                    clientGeneralThread.run();
 //                }
-                Thread.sleep(1000);
+                Thread.sleep(Overall.ListenThreadSleepTime);
             }
             catch (Exception e){
                 e.printStackTrace();
