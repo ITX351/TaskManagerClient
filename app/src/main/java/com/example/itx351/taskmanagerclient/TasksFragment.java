@@ -76,7 +76,7 @@ public class TasksFragment extends Fragment {
             while (true) {
                 try {
                     handler.sendMessage(new Message()); //从sysInfo中获取信息并更新
-                    Thread.sleep(R.integer.AutoUpdateSleepTime);
+                    Thread.sleep(Overall.AutoUpdateSleepTime);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                     break;

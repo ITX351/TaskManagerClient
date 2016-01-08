@@ -36,7 +36,7 @@ public class ClientListenThread extends ClientMainThread implements Runnable{
 //                            ClientGeneralThread(head, this.in);
 //                    clientGeneralThread.run();
 //                }
-                Thread.sleep(R.integer.ListenThreadSleepTime);
+                Thread.sleep(1000);
             }
             catch (Exception e){
                 e.printStackTrace();

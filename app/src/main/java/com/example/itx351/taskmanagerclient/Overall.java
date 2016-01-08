@@ -20,9 +20,8 @@ public class Overall extends Application{
 
     public SysInfo sysInfo;
 
-//    public InfoFragment nowInfoFragment;
-//    public TasksFragment nowTasksFragment;
-//    public ProcessFragment nowProcessFragment;
+    public static final int AutoUpdateSleepTime = 1000; //ms
+    public static final int ListenThreadSleepTime = 1000; //ms
 
     public ImageView screencapture;
 
@@ -31,8 +30,5 @@ public class Overall extends Application{
     {
         super.onCreate();
         connected = false;
-//        nowInfoFragment = null;
-//        nowTasksFragment = null;
-//        nowProcessFragment = null;
     }
 }
