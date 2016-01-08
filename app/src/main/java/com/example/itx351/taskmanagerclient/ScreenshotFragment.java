@@ -45,7 +45,7 @@ public class ScreenshotFragment extends Fragment {
             super.handleMessage(msg);
             ImageView screenshot = (ImageView)msg.obj;
             if (screenshot == null) {
-                Log.e("screenshot", "screenshot NULL in Screenshot Fragment!! ");
+                //Log.e("screenshot", "screenshot NULL in Screenshot Fragment!! ");
                 return;
             }
         }
