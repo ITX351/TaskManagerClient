@@ -18,8 +18,10 @@ public class Overall extends Application{
     public ObjectOutputStream commandOutputStream;
     public boolean connected;
 
-    public InfoFragment nowInfoFragment;
-    public TasksFragment nowTasksFragment;
+    public SysInfo sysInfo;
+
+//    public InfoFragment nowInfoFragment;
+//    public TasksFragment nowTasksFragment;
 //    public ProcessFragment nowProcessFragment;
 
     public ImageView screencapture;
@@ -29,8 +31,8 @@ public class Overall extends Application{
     {
         super.onCreate();
         connected = false;
-        nowInfoFragment = null;
-        nowTasksFragment = null;
+//        nowInfoFragment = null;
+//        nowTasksFragment = null;
 //        nowProcessFragment = null;
     }
 }

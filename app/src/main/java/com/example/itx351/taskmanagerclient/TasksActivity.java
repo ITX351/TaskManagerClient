@@ -43,22 +43,26 @@ public class TasksActivity extends AppCompatActivity
     private void changeFragment(fragmentType now)
     {
         Fragment fragment;
-        overall.nowInfoFragment = null;
-        overall.nowTasksFragment = null;
+//        overall.nowInfoFragment = null;
+//        overall.nowTasksFragment = null;
 //        overall.nowProcessFragment = null;
 
         switch (now) {
             case RunProcessPage:
-                fragment = /*overall.nowProcessFragment = */ProcessFragment.newInstance(0);
+//                overall.nowProcessFragment = ProcessFragment.newInstance(0);
+                fragment = ProcessFragment.newInstance(0);
                 break;
             case KillProcessPage:
-                fragment = /*overall.nowProcessFragment = */ProcessFragment.newInstance(1);
+//                overall.nowProcessFragment = ProcessFragment.newInstance(1);
+                fragment = ProcessFragment.newInstance(1);
                 break;
             case TaskPage:
-                fragment = overall.nowTasksFragment = TasksFragment.newInstance(1);
+//                overall.nowTasksFragment = TasksFragment.newInstance(1);
+                fragment = TasksFragment.newInstance(1);
                 break;
             case InfoPage:
-                fragment = overall.nowInfoFragment = InfoFragment.newInstance();
+//                overall.nowInfoFragment = InfoFragment.newInstance();
+                fragment = InfoFragment.newInstance();
                 break;
             default:
                 fragment = new Fragment();

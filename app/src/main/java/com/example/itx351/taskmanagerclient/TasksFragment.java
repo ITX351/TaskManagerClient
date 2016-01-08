@@ -23,6 +23,9 @@ import com.example.itx351.taskmanagerclient.dummy.DummyContent;
  */
 public class TasksFragment extends Fragment {
 
+    Overall overall;
+    MyTasksRecyclerViewAdapter adapter;
+
     // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
     // TODO: Customize parameters
@@ -33,7 +36,7 @@ public class TasksFragment extends Fragment {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            SysInfo sysInfo = (SysInfo)msg.obj;
+            SysInfo sysInfo = overall.sysInfo;
 
             Log.d("sysInfo", "Message received in TasksFragment");
 
@@ -72,8 +75,24 @@ public class TasksFragment extends Fragment {
 
                 times++;
             }
+
         }
     };
+
+    private final Thread thread = new Thread(new Runnable(){
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    handler.sendMessage(new Message());
+                    Thread.sleep(R.integer.AutoUpdateSleepTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break;
+                }
+            }
+        }
+    });
 
     public TasksFragment() {
     }
@@ -91,6 +110,7 @@ public class TasksFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        overall = (Overall)getActivity().getApplication();
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
@@ -111,8 +131,11 @@ public class TasksFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new MyTasksRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+            adapter = new MyTasksRecyclerViewAdapter(DummyContent.ITEMS, mListener);
+            recyclerView.setAdapter(adapter);
         }
+
+        thread.start();
         return view;
     }
 

@@ -1,8 +1,5 @@
 package com.example.itx351.taskmanagerclient;
 
-import android.os.Message;
-import android.util.Log;
-
 import java.io.ObjectInputStream;
 import java.util.concurrent.CountDownLatch;
 
@@ -37,27 +34,19 @@ public class ClientListenThread extends ClientMainThread implements Runnable{
                     this.sysInfo = (SysInfo) this.in.readObject();
                     System.out.println("Client received " + this.sysInfo.cpuCombined);
 
-//                    int size = this.sysInfo.procList.size();
-//                    System.out.println("size:" + size);
+                    overall.sysInfo = this.sysInfo;
+//                    Message msg = new Message();
+//                    msg.obj = sysInfo;
 //
-//                    //遍历Vector中的元素
-//                    System.out.println("top 10 processes:");
-//                    for(int i = 0;i < 10;i++){
-//                        System.out.println(this.sysInfo.procList.get(i));
+//                    Log.d("sysInfo", "Before MessageSend");
+//                    if (overall.nowInfoFragment != null) {
+//                        Log.d("sysInfo", "MessageSend to InfoFragment");
+//                        overall.nowInfoFragment.handler.sendMessage(msg);
 //                    }
-
-                    Message msg = new Message();
-                    msg.obj = sysInfo;
-
-                    Log.d("sysInfo", "Before MessageSend");
-                    if (overall.nowInfoFragment != null) {
-                        Log.d("sysInfo", "MessageSend to InfoFragment");
-                        overall.nowInfoFragment.handler.sendMessage(msg);
-                    }
-                    if (overall.nowTasksFragment != null) {
-                        Log.d("sysInfo", "MessageSend to TasksFragment");
-                        overall.nowTasksFragment.handler.sendMessage(msg);
-                    }
+//                    if (overall.nowTasksFragment != null) {
+//                        Log.d("sysInfo", "MessageSend to TasksFragment");
+//                        overall.nowTasksFragment.handler.sendMessage(msg);
+//                    }
                 }
 //                else if (head == DataHead.getDataHead("screenshotHead")) {
 //                    ClientGeneralThread clientGeneralThread = new

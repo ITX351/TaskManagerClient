@@ -1,14 +1,16 @@
 package com.example.itx351.taskmanagerclient;
 
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.Message;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import android.os.Handler;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,12 +28,20 @@ public class InfoFragment extends Fragment {
     private TextView lblCPUContent, lblMemoryContent, lblDiskContent,
             lblNetworkContent, lblDomainNameContent; //, lblKeywordContent;
 
+    private void setInfo(SysInfo sysInfo) {
+
+    }
+
     public final Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            SysInfo sysInfo = (SysInfo)msg.obj;
+            SysInfo sysInfo = overall.sysInfo;
 
+            if (sysInfo == null) {
+                Log.e("sysInfo", "sysInfo NULL in InfoFragment!! ");
+                return;
+            }
             String strCPU, strMemory, strDisk, strNetwork;
             strCPU = Double.toString(sysInfo.cpuSys);
             strMemory = Double.toString(sysInfo.memUsed) + " / " + Double.toString(sysInfo.memTotal);
@@ -44,6 +54,21 @@ public class InfoFragment extends Fragment {
             lblNetworkContent.setText(strNetwork);
         }
     };
+
+    private final Thread thread = new Thread(new Runnable(){
+        @Override
+        public void run() {
+            while (true) {
+                try {
+                    handler.sendMessage(new Message());
+                    Thread.sleep(R.integer.AutoUpdateSleepTime);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                    break;
+                }
+            }
+        }
+    });
 
     public InfoFragment() {
         // Required empty public constructor
@@ -75,23 +100,9 @@ public class InfoFragment extends Fragment {
         lblDomainNameContent.setText(overall.DomainName);
 //        lblKeywordContent.setText(overall.Keyword);
 
+        thread.start();
         return ll;
     }
-//
-//    public class modifier implements Runnable {
-//        String CPU, Memory, Disk, Network;
-//        public modifier(String _CPU, String _Memory, String _Disk, String _Network) {
-//            CPU = _CPU; Memory = _Memory; Disk = _Disk; Network = _Network;
-//        }
-//
-//        @Override
-//        public void run() {
-//            lblCPUContent.setText(CPU);
-//            lblMemoryContent.setText(Memory);
-//            lblDiskContent.setText(Disk);
-//            lblNetworkContent.setText(Network);
-//        }
-//    }
 
 //    // TODO: Rename method, update argument and hook method into UI event
 //    public void onButtonPressed(Uri uri) {
