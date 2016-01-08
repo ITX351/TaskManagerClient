@@ -14,14 +14,21 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import com.example.itx351.taskmanagerclient.dummy.DummyContent;
+
 public class TasksActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener, TasksFragment.OnListFragmentInteractionListener{
 
     public Overall overall;
     private FragmentManager fragmentManager;
 
     enum fragmentType {
         InfoPage, TaskPage, RunProcessPage, KillProcessPage
+    }
+
+    @Override
+    public void onListFragmentInteraction(DummyContent.DummyItem item) {
+
     }
 
     private void changeFragment(fragmentType now)
@@ -35,7 +42,7 @@ public class TasksActivity extends AppCompatActivity
                 fragment = ProcessFragment.newInstance(1);
                 break;
             case TaskPage:
-                fragment = new Fragment();
+                fragment = TasksFragment.newInstance(5);
                 break;
             case InfoPage:
                 fragment = InfoFragment.newInstance();
