@@ -11,13 +11,7 @@ import com.example.itx351.taskmanagerclient.dummy.DummyContent.DummyItem;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem} and makes a call to the
- * specified {@link OnListFragmentInteractionListener}.
- * TODO: Replace the implementation with code for your data type.
- */
 public class MyTasksRecyclerViewAdapter extends RecyclerView.Adapter<MyTasksRecyclerViewAdapter.ViewHolder> {
-
     private final List<DummyItem> mValues;
     private final OnListFragmentInteractionListener mListener;
 
@@ -38,9 +32,6 @@ public class MyTasksRecyclerViewAdapter extends RecyclerView.Adapter<MyTasksRecy
         holder.mItem = mValues.get(position);
         holder.mImageNameView.setText(mValues.get(position).ImageName);
         holder.mPIdView.setText(mValues.get(position).PID);
-//        holder.mSessionNameView.setText(mValues.get(position).SessionName);
-//        holder.mSessionView.setText(mValues.get(position).Session);
-//        holder.mMemUsageView.setText(mValues.get(position).MemUsage);
 
         holder.mView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,9 +54,6 @@ public class MyTasksRecyclerViewAdapter extends RecyclerView.Adapter<MyTasksRecy
         public final View mView;
         public final TextView mImageNameView;
         public final TextView mPIdView;
-//        public final TextView mSessionNameView;
-//        public final TextView mSessionView;
-//        public final TextView mMemUsageView;
         public DummyItem mItem;
 
         public ViewHolder(View view) {
@@ -73,9 +61,6 @@ public class MyTasksRecyclerViewAdapter extends RecyclerView.Adapter<MyTasksRecy
             mView = view;
             mImageNameView = (TextView) view.findViewById(R.id.ImageName);
             mPIdView = (TextView) view.findViewById(R.id.PID);
-//            mSessionNameView = (TextView) view.findViewById(R.id.SessionName);
-//            mSessionView = (TextView) view.findViewById(R.id.Session);
-//            mMemUsageView = (TextView) view.findViewById(R.id.MemUsage);
         }
     }
 }

@@ -42,7 +42,8 @@
     <string name="inf_lblKeyword">Keyword</string>
 
     <!-- fragment_process.xml -->
-    <string name="pro_lblProcessName">Process Name</string>
+    <string name="pro_ProcessName">Process Name</string>
+    <string name="pro_ProcessID">Process ID</string>
     <string name="pro_btnOK">OK</string>
     <string name="pro_RunProcess">Run process</string>
     <string name="pro_KillProcess">Kill process</string>

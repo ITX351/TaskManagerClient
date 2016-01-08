@@ -32,6 +32,5 @@ public final class DataHead {
 		else {
 			return 0x74;
 		}
-		
 	}
 }

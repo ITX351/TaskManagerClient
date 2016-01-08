@@ -97,6 +97,8 @@ public class TasksActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        changeFragment(fragmentType.InfoPage); //默认显示InfoPage（信息页面）
     }
 
     @Override

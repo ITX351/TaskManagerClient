@@ -6,8 +6,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/pro_lblProcessName"
-        android:id="@+id/pro_lblProcessName"
+        android:text="@string/DefaultString"
+        android:id="@+id/pro_lblProcessNameOrID"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="174dp" />
@@ -18,7 +18,7 @@
         android:inputType="text"
         android:id="@+id/pro_txtProcessName"
         android:ems="10"
-        android:layout_below="@+id/pro_lblProcessName"
+        android:layout_below="@+id/pro_lblProcessNameOrID"
         android:layout_centerHorizontal="true" />
 
     <Button
@@ -27,8 +27,7 @@
         android:text="@string/pro_btnOK"
         android:id="@+id/pro_btnOK"
         android:layout_below="@+id/pro_txtProcessName"
-        android:layout_alignRight="@+id/pro_lblProcessName"
-        android:layout_alignEnd="@+id/pro_lblProcessName" />
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"

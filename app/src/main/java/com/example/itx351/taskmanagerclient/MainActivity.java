@@ -35,8 +35,6 @@ public class MainActivity extends AppCompatActivity {
             StrictMode.setThreadPolicy(policy);
         }
 
-        //TODO: Auto Connection
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -49,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 //TODO: Authority Check?
 
                 try {
-                    overall.DomainName = txtDomainName.getText().toString();
-                    overall.Keyword = txtKeyword.getText().toString();
-                    overall.clientSocket = new Socket(overall.DomainName,10010);
+                    overall.DomainName = txtDomainName.getText().toString(); //存储全局信息
+//                    overall.Keyword = txtKeyword.getText().toString();
+                    overall.clientSocket = new Socket(overall.DomainName,10010); //连接服务器
                     overall.commandOutputStream = new ObjectOutputStream(overall.clientSocket.getOutputStream());
                     overall.commandInputStream = new ObjectInputStream(overall.clientSocket.getInputStream());
                     overall.connected = true;
@@ -62,16 +60,20 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 } catch (IOException e) {
                     e.printStackTrace();
-                    System.err.println("Couldn't get I/O for "
-                            + "the connection to.");
-                    Toast.makeText(MainActivity.this, "Couldn't get I/O for \"\n" +
-                            "                 + \"the connection", Toast.LENGTH_SHORT).show();
+                    String errMsg = "Couldn't get I/O for the connection to " + txtDomainName.getText().toString() + ".";
+                    System.err.println(errMsg);
+                    Toast.makeText(MainActivity.this, errMsg, Toast.LENGTH_SHORT).show();
                     return;
                 }
 
                 CountDownLatch cDownLatch = new CountDownLatch(1);
                 ClientListenThread clientListenThread = new ClientListenThread(overall.commandInputStream, cDownLatch, overall);
                 new Thread(clientListenThread).start();
+
+                Intent tasksActivity = new Intent();
+                tasksActivity.setClass(MainActivity.this, TasksActivity.class);
+                startActivity(tasksActivity); //切换到主界面
+                finish(); //关闭当前 Activity 以防返回此界面
 
 //                try {
 //                    cDownLatch.await();
@@ -88,12 +90,6 @@ public class MainActivity extends AppCompatActivity {
 //                    e.printStackTrace();
 //                }
 //                System.out.println("Client close work finished");
-
-                Intent tasksActivity = new Intent();
-                tasksActivity.setClass(MainActivity.this, TasksActivity.class);
-                startActivity(tasksActivity);
-                finish(); //In case of Backing to Login Activity
-
             }
         });
     }
