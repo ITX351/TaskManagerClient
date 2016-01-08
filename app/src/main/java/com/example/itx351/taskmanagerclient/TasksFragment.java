@@ -24,11 +24,9 @@ import com.example.itx351.taskmanagerclient.dummy.DummyContent;
 public class TasksFragment extends Fragment {
 
     Overall overall;
-    MyTasksRecyclerViewAdapter adapter;
+    RecyclerView recyclerView;
 
-    // TODO: Customize parameter argument names
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
     private int mColumnCount = 1;
     private OnListFragmentInteractionListener mListener;
 
@@ -75,9 +73,13 @@ public class TasksFragment extends Fragment {
 
                 times++;
             }
-
+            updateShowing();
         }
     };
+
+    private void updateShowing() {
+        recyclerView.setAdapter(new MyTasksRecyclerViewAdapter(DummyContent.ITEMS, mListener));
+    }
 
     private final Thread thread = new Thread(new Runnable(){
         @Override
@@ -125,14 +127,13 @@ public class TasksFragment extends Fragment {
         // Set the adapter
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
+            recyclerView = (RecyclerView) view;
             if (mColumnCount <= 1) {
                 recyclerView.setLayoutManager(new LinearLayoutManager(context));
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            adapter = new MyTasksRecyclerViewAdapter(DummyContent.ITEMS, mListener);
-            recyclerView.setAdapter(adapter);
+            updateShowing();
         }
 
         thread.start();
