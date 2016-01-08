@@ -73,6 +73,8 @@ public class MainActivity extends AppCompatActivity {
                 ClientListenThread clientListenThread = new ClientListenThread(overall.commandInputStream, cDownLatch, overall);
                 new Thread(clientListenThread).start();
 
+
+
 //                try {
 //                    cDownLatch.await();
 //                } catch (InterruptedException e) {

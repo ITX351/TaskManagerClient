@@ -49,7 +49,7 @@
         android:id="@+id/inf_lblMemory"
         android:layout_below="@id/inf_lblCPU"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginRight="80dp"
         />
 
@@ -72,7 +72,7 @@
         android:layout_weight="0.21"
         android:layout_below="@id/inf_lblMemory"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginRight="80dp"
         />
     <TextView
@@ -95,7 +95,7 @@
         android:layout_weight="0.21"
         android:layout_below="@id/inf_lblDisk"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="80dp"
+        android:layout_marginLeft="40dp"
         android:layout_marginRight="80dp"
         />
     <TextView

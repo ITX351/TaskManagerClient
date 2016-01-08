@@ -1,5 +1,6 @@
 package com.example.itx351.taskmanagerclient;
 
+import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -13,6 +14,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.itx351.taskmanagerclient.dummy.DummyContent;
@@ -32,11 +34,13 @@ public class TasksActivity extends AppCompatActivity
         String strShow = "ImageName " + item.ImageName + "\nPID " + item.PID +
                 "\nSessionName " + item.SessionName + "\nSession " + item.Session +
                 "\nMemUsage " + item.MemUsage;
-        Toast.makeText(TasksActivity.this, strShow, Toast.LENGTH_LONG).show();
-
-//        Dialog dialog = new Dialog(TasksActivity.this);
-//        dialog.setTitle("Process Details");
-//        dialog.setContentView(R.layout.dialog_view);
+        Dialog dialog = new Dialog(TasksActivity.this);
+        dialog.setTitle("Process Datails");
+        dialog.setContentView(R.layout.dialog);
+        TextView procText = (TextView)dialog.findViewById(R.id.dialog_text_view);
+        procText.setText(strShow);
+        dialog.show();
+        //Toast.makeText(TasksActivity.this, strShow, Toast.LENGTH_LONG).show();
     }
 
     private void changeFragment(fragmentType now)
