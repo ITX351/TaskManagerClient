@@ -7,22 +7,20 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
-/**
- * Created by ITX351 on 1/7/2016.
- */
 public class Overall extends Application{
-    public String DomainName;
-    public String Keyword;
-    public Socket clientSocket;
+    public String DomainName; //域名
+
+    public Socket clientSocket; //Socket对象
     public ObjectInputStream commandInputStream;
     public ObjectOutputStream commandOutputStream;
-    public boolean connected;
 
-    public SysInfo sysInfo;
+    public boolean connected; //是否成功连接
 
-//    public InfoFragment nowInfoFragment;
-//    public TasksFragment nowTasksFragment;
-//    public ProcessFragment nowProcessFragment;
+    public SysInfo sysInfo; //信息显示 任务列表
+
+    public static final int InfoFragmentAutoUpdateSleepTime = 1000; //ms
+    public static final int TasksFragmentAutoUpdateSleepTime = 3000; //ms
+    public static final int ListenThreadSleepTime = 1000; //ms
 
     public ImageView screenshot;
 
@@ -31,8 +29,6 @@ public class Overall extends Application{
     {
         super.onCreate();
         connected = false;
-//        nowInfoFragment = null;
-//        nowTasksFragment = null;
-//        nowProcessFragment = null;
+        sysInfo = null;
     }
 }
