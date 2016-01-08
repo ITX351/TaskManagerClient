@@ -18,6 +18,7 @@ package com.example.itx351.taskmanagerclient;
 //
 //}
 
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.v4.app.Fragment;
@@ -35,34 +36,22 @@ public class ScreenshotFragment extends Fragment {
 //    private OnFragmentInteractionListener mListener;
 
     Overall overall;
-    private ImageView screenshot;
+    private ImageView img;
     RelativeLayout ll;
-
-    private void setInfo(SysInfo sysInfo) {
-
-    }
 
     public final Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-            //SysInfo sysInfo = overall.sysInfo;
-            ImageView screenshot = overall.screenshot;
+            ImageView screenshot = (ImageView)msg.obj;
             if (screenshot == null) {
-                Log.e("screenshot", "screenshot NULL in screenshot Fragment!! ");
+                //Log.e("screenshot", "screenshot NULL in Screenshot Fragment!! ");
                 return;
             }
-            //lblCPUContent.setText(strCPU);
-
         }
     };
 
-    private final Thread thread = new Thread(new Runnable(){
-        @Override
-        public void run() {
 
-        }
-    });
 
     public ScreenshotFragment() {
         // Required empty public constructor
@@ -75,7 +64,6 @@ public class ScreenshotFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         overall = (Overall)getActivity().getApplication();
     }
 
@@ -83,6 +71,7 @@ public class ScreenshotFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         ll = (RelativeLayout)inflater.inflate(R.layout.fragment_screenshot, container, false);
+        img = (ImageView)ll.findViewById(R.id.screenshot);
         return ll;
     }
 

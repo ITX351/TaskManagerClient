@@ -49,10 +49,5 @@ public class ClientGeneralThread extends Thread {
 				e.printStackTrace();
 			}
 		}
-		else if (this.in != null){
-			if (this.dataHead == DataHead.getDataHead("screenshot")){
-				overall.screenshot.setImageBitmap(BitmapFactory.decodeStream(overall.commandInputStream));
-			}
-		}
 	}
 }

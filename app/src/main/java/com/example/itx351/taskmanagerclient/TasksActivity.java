@@ -51,7 +51,8 @@ public class TasksActivity extends AppCompatActivity
                 fragment = ProcessFragment.newInstance(0);
                 break;
             case ScreenshotPage:
-                fragment = ScreenshotFragment.newInstance();
+                overall.nowScreenshotFragment = ScreenshotFragment.newInstance();
+                fragment = overall.nowScreenshotFragment;
                 break;
             case KillProcessPage:
                 fragment = ProcessFragment.newInstance(1);
