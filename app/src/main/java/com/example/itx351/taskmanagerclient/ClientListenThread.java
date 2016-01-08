@@ -15,7 +15,7 @@ import java.io.ObjectInputStream;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class ClientListenThread extends ClientMainThread implements Runnable{
+public class ClientListenThread implements Runnable{
     private Overall overall;
     private ImageView screenshot;
     ObjectInputStream in;

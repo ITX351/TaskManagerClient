@@ -6,23 +6,11 @@ android:layout_gravity="center_horizontal|center_vertical"
 android:gravity="center_horizontal"
 android:orientation="vertical">
 
-
-
-<TextView
-    android:id="@+id/dialog_text_view"
-    android:scaleType="center"
-    android:layout_width="fill_parent"
-    android:layout_height="wrap_content"
-    />
-
-<!--<Button-->
-    <!--android:id="@+id/dialogButton"-->
-    <!--android:layout_width="100dp"-->
-    <!--android:layout_height="wrap_content"-->
-    <!--android:text="@string/dialog_button_label"-->
-    <!--android:layout_marginTop="5dp"-->
-    <!--android:layout_marginRight="5dp"-->
-    <!--android:layout_below="@+id/image"-->
-    <!--/>-->
+    <TextView
+        android:id="@+id/dialog_text_view"
+        android:scaleType="center"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        />
 
 </RelativeLayout>
