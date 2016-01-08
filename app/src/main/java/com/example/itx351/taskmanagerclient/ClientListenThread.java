@@ -1,8 +1,6 @@
 package com.example.itx351.taskmanagerclient;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.util.Log;
+import android.os.Message;
 
 import java.io.ObjectInputStream;
 import java.util.concurrent.CountDownLatch;
@@ -30,25 +28,19 @@ public class ClientListenThread extends ClientMainThread implements Runnable{
 
 //        SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-hh-mm");
         while (this.cDownLatch.getCount() > 0){
-            Log.d("sysinfo", "one second passed");
             try{
-                Looper.prepare();
+                //Looper.prepare();
 
                 byte head  = (byte) this.in.readObject();
                 if(head == DataHead.getDataHead("sysInfoHead")){
                     this.sysInfo = (SysInfo) this.in.readObject();
-                    Log.d("sysinfo", "Receive: " + String.valueOf(this.sysInfo.cpuSys) + String.valueOf(sysInfo.memFree));
                     System.out.println("Client received " + this.sysInfo.cpuCombined);
 
-                    if (overall.nowInfoFragment == null) {
-                        Log.d("sysinfo", "Info fragment not started");
-                    }
-                    else {
-                        Log.d("sysinfo", "Info fragment started get");
-                        Handler h = new Handler();
-                        Log.d("sysinfo", "Handler created");
-                        h.post(overall.nowInfoFragment.new modifier(Double.toString(sysInfo.cpuSys),
-                                Double.toString(sysInfo.memFree), "abc","def"));
+                    Message msg = new Message();
+                    msg.obj = sysInfo;
+
+                    if (overall.nowInfoFragment != null) {
+                        overall.nowInfoFragment.handler.sendMessage(msg);
                     }
                 }
 //                else if (head == DataHead.getDataHead("screenshotHead")) {
@@ -56,12 +48,7 @@ public class ClientListenThread extends ClientMainThread implements Runnable{
 //                            ClientGeneralThread(head, this.in);
 //                    clientGeneralThread.run();
 //                }
-                else{
-                }
                 Thread.sleep(1000);
-                Log.d("sysinfo", "aftersleep");
-                //Looper.loop();
-                //Log.d("sysinfo", "after loop");
             }
             catch (Exception e){
                 e.printStackTrace();

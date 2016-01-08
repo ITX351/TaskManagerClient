@@ -1,14 +1,14 @@
 package com.example.itx351.taskmanagerclient;
 
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import org.w3c.dom.Text;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +24,26 @@ public class InfoFragment extends Fragment {
     Overall overall;
     RelativeLayout ll;
     private TextView lblCPUContent, lblMemoryContent, lblDiskContent,
-            lblNetworkContent, lblDomainNameContent, lblKeywordContent;
+            lblNetworkContent, lblDomainNameContent; //, lblKeywordContent;
+
+    public final Handler handler = new Handler(){
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            SysInfo sysInfo = (SysInfo)msg.obj;
+
+            String strCPU, strMemory, strDisk, strNetwork;
+            strCPU = Double.toString(sysInfo.cpuSys);
+            strMemory = Double.toString(sysInfo.memUsed) + " / " + Double.toString(sysInfo.memTotal);
+            strDisk = "To show disk";
+            strNetwork = "To show network";
+
+            lblCPUContent.setText(strCPU);
+            lblMemoryContent.setText(strMemory);
+            lblDiskContent.setText(strDisk);
+            lblNetworkContent.setText(strNetwork);
+        }
+    };
 
     public InfoFragment() {
         // Required empty public constructor
@@ -51,28 +70,28 @@ public class InfoFragment extends Fragment {
         lblDiskContent = (TextView)ll.findViewById(R.id.inf_lblDiskContent);
         lblNetworkContent = (TextView)ll.findViewById(R.id.inf_lblNetworkContent);
         lblDomainNameContent = (TextView)ll.findViewById(R.id.inf_lblDomainNameContent);
-        lblKeywordContent = (TextView)ll.findViewById(R.id.inf_lblKeywordContent);
+//        lblKeywordContent = (TextView)ll.findViewById(R.id.inf_lblKeywordContent);
 
         lblDomainNameContent.setText(overall.DomainName);
-        lblKeywordContent.setText(overall.Keyword);
+//        lblKeywordContent.setText(overall.Keyword);
 
         return ll;
     }
-
-    public class modifier implements Runnable {
-        String CPU, Memory, Disk, Network;
-        public modifier(String _CPU, String _Memory, String _Disk, String _Network) {
-            CPU = _CPU; Memory = _Memory; Disk = _Disk; Network = _Network;
-        }
-
-        @Override
-        public void run() {
-            lblCPUContent.setText(CPU);
-            lblMemoryContent.setText(Memory);
-            lblDiskContent.setText(Disk);
-            lblNetworkContent.setText(Network);
-        }
-    }
+//
+//    public class modifier implements Runnable {
+//        String CPU, Memory, Disk, Network;
+//        public modifier(String _CPU, String _Memory, String _Disk, String _Network) {
+//            CPU = _CPU; Memory = _Memory; Disk = _Disk; Network = _Network;
+//        }
+//
+//        @Override
+//        public void run() {
+//            lblCPUContent.setText(CPU);
+//            lblMemoryContent.setText(Memory);
+//            lblDiskContent.setText(Disk);
+//            lblNetworkContent.setText(Network);
+//        }
+//    }
 
 //    // TODO: Rename method, update argument and hook method into UI event
 //    public void onButtonPressed(Uri uri) {
