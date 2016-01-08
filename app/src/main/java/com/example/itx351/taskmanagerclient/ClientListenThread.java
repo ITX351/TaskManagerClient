@@ -6,11 +6,10 @@ import java.util.concurrent.CountDownLatch;
 //import javax.imageio.ImageIO;
 //import javax.xml.crypto.Data;
 
-public class ClientListenThread extends ClientMainThread implements Runnable{
+public class ClientListenThread implements Runnable{
     private Overall overall;
 
     private CountDownLatch cDownLatch;
-//    private Screenshot screenshot = new Screenshot();
     ObjectInputStream in;
 
     public ClientListenThread(ObjectInputStream in, CountDownLatch cDownLatch, Overall _overall) {

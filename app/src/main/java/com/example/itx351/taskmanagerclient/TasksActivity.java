@@ -1,6 +1,5 @@
 package com.example.itx351.taskmanagerclient;
 
-import android.app.Dialog;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
@@ -9,14 +8,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.itx351.taskmanagerclient.dummy.DummyContent;
@@ -36,15 +32,8 @@ public class TasksActivity extends AppCompatActivity
         String strShow = "ImageName " + item.ImageName + "\nPID " + item.PID +
                 "\nSessionName " + item.SessionName + "\nSession " + item.Session +
                 "\nMemUsage " + item.MemUsage;
-        Dialog dialog = new Dialog(TasksActivity.this);
-        //AlertDialog.Builder popupBuilder = new AlertDialog.Builder(this);
-        dialog.setTitle("Process Datails");
-        dialog.setContentView(R.layout.dialog);
-        TextView procText = (TextView)dialog.findViewById(R.id.dialog_text_view);
-        procText.setText(strShow);
-        procText.setGravity(Gravity.CENTER_HORIZONTAL);
-        dialog.show();
         //Toast.makeText(TasksActivity.this, strShow, Toast.LENGTH_LONG).show();
+        Overall.showDialog(TasksActivity.this, "Process Details", strShow);
     }
 
     private void changeFragment(fragmentType now)
@@ -52,21 +41,20 @@ public class TasksActivity extends AppCompatActivity
         Fragment fragment;
 
         switch (now) {
-            case RunProcessPage:
-                fragment = ProcessFragment.newInstance(0);
-                break;
-            case KillProcessPage:
-                fragment = ProcessFragment.newInstance(1);
-                break;
-            case TaskPage:
-                fragment = TasksFragment.newInstance(1); //每行显示一个
-                break;
             case InfoPage:
                 fragment = InfoFragment.newInstance();
                 break;
+            case TaskPage:
+                fragment = TasksFragment.newInstance(1); //每行显示一个进程
+                break;
+            case RunProcessPage:
+                fragment = ProcessFragment.newInstance(0);
+                break;
             case ScreenshotPage:
-                //overall.nowInfoFragment = InfoFragment.newInstance();
                 fragment = ScreenshotFragment.newInstance();
+                break;
+            case KillProcessPage:
+                fragment = ProcessFragment.newInstance(1);
                 break;
             default:
                 fragment = new Fragment();
@@ -75,7 +63,7 @@ public class TasksActivity extends AppCompatActivity
 
         FragmentTransaction transaction = fragmentManager.beginTransaction();
         transaction.replace(R.id.tasks_content, fragment);
-        transaction.commit();
+        transaction.commit(); //切换 Fragment
     }
 
     @Override
@@ -83,8 +71,8 @@ public class TasksActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tasks);
 
-        overall = (Overall)getApplication();
-        fragmentManager = getSupportFragmentManager();
+        overall = (Overall)getApplication(); //获取全局 Application
+        fragmentManager = getSupportFragmentManager(); //获取 Fragment 管理器
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -165,8 +153,8 @@ public class TasksActivity extends AppCompatActivity
             case R.id.navScreenshot:
                 clientGeneralThread = new ClientGeneralThread(
                         DataHead.getDataHead("screenshotCommandHead"), overall.commandOutputStream, overall);
-                clientGeneralThread.start();
-                changeFragment(fragmentType.ScreenshotPage);
+                clientGeneralThread.start(); //发送截图指令
+                changeFragment(fragmentType.ScreenshotPage); //并切换到截图页面等待
                 break;
             case R.id.navKillProcess:
                 changeFragment(fragmentType.KillProcessPage);

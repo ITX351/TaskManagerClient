@@ -1,18 +1,15 @@
 package com.example.itx351.taskmanagerclient;
 
+import android.graphics.BitmapFactory;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.text.SimpleDateFormat;
-
-import android.graphics.BitmapFactory;
-import android.util.Log;
 
 
 public class ClientGeneralThread extends Thread {
 	private Overall overall;
 
-	Screenshot screenshot ;
 	byte dataHead;
 	ObjectInputStream in;
 	ObjectOutputStream out;

@@ -49,7 +49,7 @@ public class ScreenshotFragment extends Fragment {
             //SysInfo sysInfo = overall.sysInfo;
             ImageView screenshot = overall.screenshot;
             if (screenshot == null) {
-                Log.e("screenshot", "screenshot NULL in Screenshot Fragment!! ");
+                Log.e("screenshot", "screenshot NULL in screenshot Fragment!! ");
                 return;
             }
             //lblCPUContent.setText(strCPU);

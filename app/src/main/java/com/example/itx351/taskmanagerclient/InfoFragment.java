@@ -24,20 +24,20 @@ public class InfoFragment extends Fragment {
             SysInfo sysInfo = overall.sysInfo;
 
             if (sysInfo == null) {
-                Log.e("sysInfo", "sysInfo NULL in InfoFragment!! ");
-                return;
+                Log.e("sysInfo", "sysInfo NULL in InfoFragment!");
             }
-            String strCPU, strMemory, strDisk, strNetwork;
-            strCPU = Double.toString(sysInfo.cpuSys);
-            strMemory = Double.toString(sysInfo.memUsed) + " / " + Double.toString(sysInfo.memTotal);
-            strDisk = "To show disk";
-            strNetwork = "To show network";
+            else {
+                String strCPU, strMemory, strDisk, strNetwork;
+                strCPU = Double.toString(sysInfo.cpuSys);
+                strMemory = Double.toString(sysInfo.memUsed) + " / " + Double.toString(sysInfo.memTotal);
+                strDisk = "To show disk";
+                strNetwork = "To show network";
 
-            lblCPUContent.setText(strCPU); //更新界面信息
-            lblMemoryContent.setText(strMemory);
-            lblDiskContent.setText(strDisk);
-            lblNetworkContent.setText(strNetwork);
-
+                lblCPUContent.setText(strCPU); //更新界面信息
+                lblMemoryContent.setText(strMemory);
+                lblDiskContent.setText(strDisk);
+                lblNetworkContent.setText(strNetwork);
+            }
             handler.postDelayed(this, Overall.InfoFragmentAutoUpdateSleepTime); //持续更新
         }
     };

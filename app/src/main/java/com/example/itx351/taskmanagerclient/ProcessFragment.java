@@ -58,21 +58,21 @@ public class ProcessFragment extends Fragment {
         Button btnOK = (Button)ll.findViewById(R.id.pro_btnOK);
         btnOK.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View view) {
-                String processName = txtProcessName.getText().toString();
-                System.out.println("qqqName " + processName);
+            String processName = txtProcessName.getText().toString();
+            System.out.println("Name " + processName);
 
-                if (operationType == 0) {
-                    clientGeneralThread = new ClientGeneralThread(
-                            DataHead.getDataHead("runProcessCommandHead"), overall.commandOutputStream, overall, processName);
-                    clientGeneralThread.start();
-                    Log.i("Tag", "running process");
-                }
-                else if (operationType == 1) {
-                    clientGeneralThread = new ClientGeneralThread(
-                            DataHead.getDataHead("killProcessCommandHead"), overall.commandOutputStream, overall, processName);
-                    clientGeneralThread.start();
-                    Log.i("Tag", "killing process");
-                }
+            if (operationType == 0) { //Run 进程
+                clientGeneralThread = new ClientGeneralThread(
+                        DataHead.getDataHead("runProcessCommandHead"), overall.commandOutputStream, overall, processName);
+                clientGeneralThread.start();
+                Log.i("Tag", "running process");
+            }
+            else if (operationType == 1) { //Kill 进程
+                clientGeneralThread = new ClientGeneralThread(
+                        DataHead.getDataHead("killProcessCommandHead"), overall.commandOutputStream, overall, processName);
+                clientGeneralThread.start();
+                Log.i("Tag", "killing process");
+            }
             }
         });
         return ll;

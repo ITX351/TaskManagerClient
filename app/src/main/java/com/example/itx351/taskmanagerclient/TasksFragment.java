@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,40 +34,45 @@ public class TasksFragment extends Fragment {
         public void run() {
             SysInfo sysInfo = overall.sysInfo;
 
-            List<DummyItem> items = new ArrayList<>();
-            items.clear();
-
-            //通过第二行的等号来获取分割点
-            int times = -1, l0 = 0, l1 = 0, l2 = 0, l3 = 0, l4 = 0;
-
-            for (String str : sysInfo.procList) {
-                times++;
-
-                if (times <= 1) continue; //第一行为空 第二行为表头
-                if (times == 2) { //一行等号 对齐下方的各类名字
-                    String[] tmpEquals = str.split(" ");
-                    l0 = tmpEquals[0].length(); //每一串等号的结束点
-                    l1 = tmpEquals[1].length() + l0 + 1;
-                    l2 = tmpEquals[2].length() + l1 + 1;
-                    l3 = tmpEquals[3].length() + l2 + 1;
-                    l4 = tmpEquals[4].length() + l3 + 1;
-                    continue;
-                }
-
-                String strImageName, strCPU, strSessionName, strSession, strMemUsage;
-                strImageName = str.substring(0, l0).trim(); //截取字符串
-                strCPU = str.substring(l0, l1).trim();
-                strSessionName = str.substring(l1, l2).trim();
-                strSession = str.substring(l2, l3).trim();
-                strMemUsage = str.substring(l3, l4).trim();
-
-                DummyContent.DummyItem nowItem = new DummyContent.DummyItem(strImageName, strCPU,
-                        strSessionName, strSession, strMemUsage);
-                items.add(nowItem); //添加元素
+            if (sysInfo == null) {
+                Log.e("sysInfo", "sysInfo NULL in TasksFragment!");
             }
-            recyclerView.setAdapter(new MyTasksRecyclerViewAdapter(items, mListener)); //更新视图
+            else {
+                List<DummyItem> items = new ArrayList<>();
+                items.clear();
 
-            Toast.makeText(getActivity(), "List updated.", Toast.LENGTH_SHORT).show();
+                //通过第二行的等号来获取分割点
+                int times = -1, l0 = 0, l1 = 0, l2 = 0, l3 = 0, l4 = 0;
+
+                for (String str : sysInfo.procList) {
+                    times++;
+
+                    if (times <= 1) continue; //第一行为空 第二行为表头
+                    if (times == 2) { //一行等号 对齐下方的各类名字
+                        String[] tmpEquals = str.split(" ");
+                        l0 = tmpEquals[0].length(); //每一串等号的结束点
+                        l1 = tmpEquals[1].length() + l0 + 1;
+                        l2 = tmpEquals[2].length() + l1 + 1;
+                        l3 = tmpEquals[3].length() + l2 + 1;
+                        l4 = tmpEquals[4].length() + l3 + 1;
+                        continue;
+                    }
+
+                    String strImageName, strCPU, strSessionName, strSession, strMemUsage;
+                    strImageName = str.substring(0, l0).trim(); //截取字符串
+                    strCPU = str.substring(l0, l1).trim();
+                    strSessionName = str.substring(l1, l2).trim();
+                    strSession = str.substring(l2, l3).trim();
+                    strMemUsage = str.substring(l3, l4).trim();
+
+                    DummyContent.DummyItem nowItem = new DummyContent.DummyItem(strImageName, strCPU,
+                            strSessionName, strSession, strMemUsage);
+                    items.add(nowItem); //添加元素
+                }
+                recyclerView.setAdapter(new MyTasksRecyclerViewAdapter(items, mListener)); //更新视图
+
+                Toast.makeText(getActivity(), "List updated.", Toast.LENGTH_SHORT).show();
+            }
             handler.postDelayed(this, Overall.TasksFragmentAutoUpdateSleepTime);
         }
     };
