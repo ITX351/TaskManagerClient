@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.itx351.taskmanagerclient.dummy.DummyContent;
 
@@ -28,7 +29,9 @@ public class TasksActivity extends AppCompatActivity
 
     @Override
     public void onListFragmentInteraction(DummyContent.DummyItem item) {
-
+        Toast.makeText(TasksActivity.this, "ImageName " + item.ImageName + "\nPID " + item.PID +
+                "\nSessionName " + item.SessionName + "\nSession" + item.Session +
+                "\nMemUsage " + item.MemUsage, Toast.LENGTH_LONG).show();
     }
 
     private void changeFragment(fragmentType now)
@@ -42,7 +45,7 @@ public class TasksActivity extends AppCompatActivity
                 fragment = ProcessFragment.newInstance(1);
                 break;
             case TaskPage:
-                fragment = TasksFragment.newInstance(5);
+                fragment = TasksFragment.newInstance(1);
                 break;
             case InfoPage:
                 fragment = InfoFragment.newInstance();

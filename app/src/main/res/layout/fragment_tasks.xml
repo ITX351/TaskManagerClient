@@ -5,16 +5,36 @@
     android:orientation="horizontal">
 
     <TextView
-        android:id="@+id/id"
+        android:id="@+id/ImageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
-        android:id="@+id/content"
+        android:id="@+id/PID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="@dimen/text_margin"
         android:textAppearance="?attr/textAppearanceListItem" />
+    <!--<TextView-->
+        <!--android:id="@+id/SessionName"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="@dimen/text_margin"-->
+        <!--android:textAppearance="?attr/textAppearanceListItem" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/Session"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="@dimen/text_margin"-->
+        <!--android:textAppearance="?attr/textAppearanceListItem" />-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/MemUsage"-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:layout_margin="@dimen/text_margin"-->
+        <!--android:textAppearance="?attr/textAppearanceListItem" />-->
 </LinearLayout>

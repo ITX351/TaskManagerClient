@@ -43,7 +43,7 @@
 
     <TextView
         android:layout_height="wrap_content"
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/inf_lblMemory"
         android:id="@+id/inf_lblMemory"
@@ -52,6 +52,7 @@
         android:layout_marginLeft="80dp"
         android:layout_marginRight="80dp"
         />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -64,7 +65,7 @@
 
     <TextView
         android:layout_height="wrap_content"
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/inf_lblDisk"
         android:id="@+id/inf_lblDisk"
@@ -87,7 +88,7 @@
 
     <TextView
         android:layout_height="wrap_content"
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/inf_lblNetwork"
         android:id="@+id/inf_lblNetwork"
@@ -116,8 +117,7 @@
         android:layout_below="@+id/inf_lblNetwork"
         android:layout_alignLeft="@+id/inf_lblNetwork"
         android:layout_alignStart="@+id/inf_lblNetwork"
-        android:layout_marginTop="34dp"
-        android:textColor="#ff0000" />
+        android:layout_marginTop="34dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -148,6 +148,5 @@
         android:id="@+id/inf_lblKeywordContent"
         android:layout_alignTop="@+id/inf_lblKeyword"
         android:layout_toRightOf="@+id/inf_lblNetwork"
-        android:layout_toEndOf="@+id/inf_lblNetwork"
-        android:textColor="#00ff08" />
+        android:layout_toEndOf="@+id/inf_lblNetwork" />
 </RelativeLayout>

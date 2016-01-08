@@ -34,39 +34,29 @@ public class DummyContent {
 
     private static void addItem(DummyItem item) {
         ITEMS.add(item);
-        ITEM_MAP.put(item.id, item);
+        ITEM_MAP.put(item.PID, item);
     }
 
     private static DummyItem createDummyItem(int position) {
-        return new DummyItem(String.valueOf(position), "Item " + position, makeDetails(position));
-    }
-
-    private static String makeDetails(int position) {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Details about Item: ").append(position);
-        for (int i = 0; i < position; i++) {
-            builder.append("\nMore details information here.");
-        }
-        return builder.toString();
+        return new DummyItem("ImageName " + position, String.valueOf(position), "SessionName " + position, "Session " + position, "MemUsage " + position);
     }
 
     /**
      * A dummy item representing a piece of content.
      */
     public static class DummyItem {
-        public final String id;
-        public final String content;
-        public final String details;
+        public final String ImageName;
+        public final String PID;
+        public final String SessionName;
+        public final String Session;
+        public final String MemUsage;
 
-        public DummyItem(String id, String content, String details) {
-            this.id = id;
-            this.content = content;
-            this.details = details;
-        }
-
-        @Override
-        public String toString() {
-            return content;
+        public DummyItem(String _ImageName, String _PID, String _SessionName, String _Session, String _MemUsage) {
+            ImageName = _ImageName;
+            PID = _PID;
+            SessionName = _SessionName;
+            Session = _Session;
+            MemUsage = _MemUsage;
         }
     }
 }
