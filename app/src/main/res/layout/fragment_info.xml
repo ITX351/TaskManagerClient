@@ -129,24 +129,24 @@
         android:layout_toRightOf="@+id/inf_lblNetwork"
         android:layout_toEndOf="@+id/inf_lblNetwork" />
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/inf_lblKeyword"
-        android:id="@+id/inf_lblKeyword"
-        android:layout_below="@+id/inf_lblDomainName"
-        android:layout_alignLeft="@+id/inf_lblDomainName"
-        android:layout_alignStart="@+id/inf_lblDomainName"
-        android:layout_marginTop="32dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/DefaultString"
-        android:id="@+id/inf_lblKeywordContent"
-        android:layout_alignTop="@+id/inf_lblKeyword"
-        android:layout_toRightOf="@+id/inf_lblNetwork"
-        android:layout_toEndOf="@+id/inf_lblNetwork" />
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/inf_lblKeyword"-->
+        <!--android:id="@+id/inf_lblKeyword"-->
+        <!--android:layout_below="@+id/inf_lblDomainName"-->
+        <!--android:layout_alignLeft="@+id/inf_lblDomainName"-->
+        <!--android:layout_alignStart="@+id/inf_lblDomainName"-->
+        <!--android:layout_marginTop="32dp" />-->
+    <!--<TextView-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:textAppearance="?android:attr/textAppearanceMedium"-->
+        <!--android:text="@string/DefaultString"-->
+        <!--android:id="@+id/inf_lblKeywordContent"-->
+        <!--android:layout_alignTop="@+id/inf_lblKeyword"-->
+        <!--android:layout_toRightOf="@+id/inf_lblNetwork"-->
+        <!--android:layout_toEndOf="@+id/inf_lblNetwork"-->
+        <!--android:textColor="#00ff08" />-->
 </RelativeLayout>

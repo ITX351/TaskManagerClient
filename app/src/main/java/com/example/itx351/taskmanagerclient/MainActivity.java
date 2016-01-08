@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 CountDownLatch cDownLatch = new CountDownLatch(1);
-                ClientListenThread clientListenThread = new ClientListenThread(overall.commandInputStream, cDownLatch);
+                ClientListenThread clientListenThread = new ClientListenThread(overall.commandInputStream, cDownLatch, overall);
                 new Thread(clientListenThread).start();
 
 //                try {
