@@ -14,15 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.itx351.taskmanagerclient.dummy.DummyContent;
+import com.example.itx351.taskmanagerclient.dummy.DummyContent.DummyItem;
 
-/**
- * A fragment representing a list of Items.
- * <p/>
- * Activities containing this fragment MUST implement the {@link OnListFragmentInteractionListener}
- * interface.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class TasksFragment extends Fragment {
-
     Overall overall;
     RecyclerView recyclerView;
 
@@ -38,17 +35,16 @@ public class TasksFragment extends Fragment {
 
             Log.d("sysInfo", "Message received in TasksFragment");
 
-            DummyContent.clear();
+            List<DummyItem> items = new ArrayList<>();
+            items.clear();
 
             //通过第二行的等号来获取分割点
-            int times = 0, l0 = 0, l1 = 0, l2 = 0, l3 = 0, l4 = 0;
-
-            //Log.d("strInfo", "Length of procList: " + Integer.toString(sysInfo.procList.size()));
+            int times = -1, l0 = 0, l1 = 0, l2 = 0, l3 = 0, l4 = 0;
 
             for (String str : sysInfo.procList) {
-                //Log.d("strInfo", Integer.toString(times) + " " + str);
+                times++;
 
-                if (times <= 1) { times++; continue; } //第一行为空 第二行为表头
+                if (times <= 1) continue; //第一行为空 第二行为表头
                 if (times == 2) { //一行等号 对齐下方的各类名字
                     String[] tmpEquals = str.split(" ");
                     l0 = tmpEquals[0].length(); //每一串等号的结束点
@@ -56,12 +52,11 @@ public class TasksFragment extends Fragment {
                     l2 = tmpEquals[2].length() + l1 + 1;
                     l3 = tmpEquals[3].length() + l2 + 1;
                     l4 = tmpEquals[4].length() + l3 + 1;
-                    times++;
                     continue;
                 }
 
                 String strImageName, strCPU, strSessionName, strSession, strMemUsage;
-                strImageName = str.substring(0, l0).trim();
+                strImageName = str.substring(0, l0).trim(); //截取字符串
                 strCPU = str.substring(l0, l1).trim();
                 strSessionName = str.substring(l1, l2).trim();
                 strSession = str.substring(l2, l3).trim();
@@ -69,24 +64,18 @@ public class TasksFragment extends Fragment {
 
                 DummyContent.DummyItem nowItem = new DummyContent.DummyItem(strImageName, strCPU,
                         strSessionName, strSession, strMemUsage);
-                DummyContent.addItem(nowItem);
-
-                times++;
+                items.add(nowItem); //添加元素
             }
-            updateShowing();
+            recyclerView.setAdapter(new MyTasksRecyclerViewAdapter(items, mListener)); //更新视图
         }
     };
-
-    private void updateShowing() {
-        recyclerView.setAdapter(new MyTasksRecyclerViewAdapter(DummyContent.ITEMS, mListener));
-    }
 
     private final Thread thread = new Thread(new Runnable(){
         @Override
         public void run() {
             while (true) {
                 try {
-                    handler.sendMessage(new Message());
+                    handler.sendMessage(new Message()); //从sysInfo中获取信息并更新
                     Thread.sleep(R.integer.AutoUpdateSleepTime);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
@@ -99,12 +88,11 @@ public class TasksFragment extends Fragment {
     public TasksFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static TasksFragment newInstance(int columnCount) {
         TasksFragment fragment = new TasksFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
+        args.putInt(ARG_COLUMN_COUNT, columnCount); //每行显示数目
         fragment.setArguments(args);
         return fragment;
     }
@@ -133,13 +121,11 @@ public class TasksFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            updateShowing();
         }
 
         thread.start();
         return view;
     }
-
 
     @Override
     public void onAttach(Context context) {
@@ -158,18 +144,7 @@ public class TasksFragment extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p/>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnListFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onListFragmentInteraction(DummyContent.DummyItem item);
+        void onListFragmentInteraction(DummyItem item);
     }
 }

@@ -37,7 +37,6 @@ public class TasksActivity extends AppCompatActivity
 //        Dialog dialog = new Dialog(TasksActivity.this);
 //        dialog.setTitle("Process Details");
 //        dialog.setContentView(R.layout.dialog_view);
-
     }
 
     private void changeFragment(fragmentType now)
@@ -58,7 +57,7 @@ public class TasksActivity extends AppCompatActivity
                 break;
             case TaskPage:
 //                overall.nowTasksFragment = TasksFragment.newInstance(1);
-                fragment = TasksFragment.newInstance(1);
+                fragment = TasksFragment.newInstance(1); //每行显示一个
                 break;
             case InfoPage:
 //                overall.nowInfoFragment = InfoFragment.newInstance();
