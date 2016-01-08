@@ -7,6 +7,6 @@ public class SysInfo implements Serializable{
     String osArch, osDataModle, osDescription;
     Long memTotal, memUsed, memFree;
     Long swapTotal, swapFree, swapUsed;
-    double cpuSys,cpuUser,  cpuCombined, cpuWait, cpuIdle;
+    double cpuSys, cpuUser, cpuCombined, cpuWait, cpuIdle;
     Vector<String> procList;
 }

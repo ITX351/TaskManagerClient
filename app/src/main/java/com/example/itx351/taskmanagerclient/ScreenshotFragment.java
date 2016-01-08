@@ -60,15 +60,7 @@ public class ScreenshotFragment extends Fragment {
     private final Thread thread = new Thread(new Runnable(){
         @Override
         public void run() {
-            while (true) {
-                try {
-                    handler.sendMessage(new Message());
-                    Thread.sleep(R.integer.AutoUpdateSleepTime);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    break;
-                }
-            }
+
         }
     });
 
