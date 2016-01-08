@@ -42,10 +42,15 @@ public class ClientGeneralThread extends Thread {
 	public  void run(){
 		if (this.out!=null){
 			try {
-				Log.d("Thread", "Run into sending command");
+				Log.i("Tag", "Run into sending command");
+				Log.i("Tag", this.command);
 				out.writeObject(this.dataHead);
 				if (this.command!=null){
 					out.writeObject(this.command);
+					Log.i("Tag", this.command);
+				}
+				else{
+					Log.i("Tag","empty command");
 				}
 				out.flush();
 			} catch (IOException e) {

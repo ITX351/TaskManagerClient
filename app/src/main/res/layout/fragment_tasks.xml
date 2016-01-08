@@ -8,14 +8,14 @@
         android:id="@+id/ImageName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
+        android:layout_margin="16dp"
         android:textAppearance="?attr/textAppearanceListItem" />
 
     <TextView
         android:id="@+id/PID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="@dimen/text_margin"
+        android:layout_margin="16dp"
         android:textAppearance="?attr/textAppearanceListItem" />
     <!--<TextView-->
         <!--android:id="@+id/SessionName"-->
