@@ -24,7 +24,7 @@ public class Overall extends Application{
 //    public TasksFragment nowTasksFragment;
 //    public ProcessFragment nowProcessFragment;
 
-    public ImageView screencapture;
+    public ImageView screenshot;
 
     @Override
     public void onCreate()

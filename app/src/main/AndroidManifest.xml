@@ -27,7 +27,7 @@
             />
         <activity android:name=".RunActivity" />
         <activity
-            android:name=".ScreenshotActivity"
+            android:name=".ScreenshotFragment"
             android:label="@string/title_activity_screenshot"
             android:theme="@style/AppTheme"></activity>
     </application>

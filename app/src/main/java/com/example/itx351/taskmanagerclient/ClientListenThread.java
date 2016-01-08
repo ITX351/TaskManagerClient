@@ -31,11 +31,11 @@ public class ClientListenThread extends ClientMainThread implements Runnable{
 
                     overall.sysInfo = sysInfo;
                 }
-//                else if (head == DataHead.getDataHead("screenshotHead")) {
-//                    ClientGeneralThread clientGeneralThread = new
-//                            ClientGeneralThread(head, this.in);
-//                    clientGeneralThread.run();
-//                }
+                else if (head == DataHead.getDataHead("screenshotHead")) {
+                    ClientGeneralThread clientGeneralThread = new
+                            ClientGeneralThread(head, this.in, overall);
+                    clientGeneralThread.run();
+                }
                 Thread.sleep(R.integer.ListenThreadSleepTime);
             }
             catch (Exception e){

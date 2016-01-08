@@ -3,6 +3,7 @@ package com.example.itx351.taskmanagerclient;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.text.SimpleDateFormat;
 
 import android.graphics.BitmapFactory;
 import android.util.Log;
@@ -42,15 +43,9 @@ public class ClientGeneralThread extends Thread {
 	public  void run(){
 		if (this.out!=null){
 			try {
-				Log.i("Tag", "Run into sending command");
-				Log.i("Tag", this.command);
 				out.writeObject(this.dataHead);
 				if (this.command!=null){
 					out.writeObject(this.command);
-					Log.i("Tag", this.command);
-				}
-				else{
-					Log.i("Tag","empty command");
 				}
 				out.flush();
 			} catch (IOException e) {
@@ -59,18 +54,7 @@ public class ClientGeneralThread extends Thread {
 		}
 		else if (this.in != null){
 			if (this.dataHead == DataHead.getDataHead("screenshot")){
-				overall.screencapture.setImageBitmap(BitmapFactory.decodeStream(overall.commandInputStream));
-//			 SimpleDateFormat sdf = new SimpleDateFormat("MM-dd-hh-mm");
-//			 try {
-//				this.screenshot = (Screenshot)this.in.readObject();
-//				 this.screenshot.byteToImage();
-//				 Date now = new Date(System.currentTimeMillis());
-//				 ImageIO.write(this.screenshot.capture, "png", new File("screenshot"+sdf.format(now)+".png"));
-//				 System.out.println("Client received screenshot");
-//			} catch (ClassNotFoundException e) {
-//				e.printStackTrace();
-//			} catch (IOException e) {
-//				e.printStackTrace();
+				overall.screenshot.setImageBitmap(BitmapFactory.decodeStream(overall.commandInputStream));
 			}
 		}
 	}

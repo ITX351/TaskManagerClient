@@ -9,8 +9,10 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +28,7 @@ public class TasksActivity extends AppCompatActivity
     private FragmentManager fragmentManager;
 
     enum fragmentType {
-        InfoPage, TaskPage, RunProcessPage, KillProcessPage
+        InfoPage, TaskPage, RunProcessPage, KillProcessPage, ScreenshotPage
     }
 
     @Override
@@ -35,10 +37,12 @@ public class TasksActivity extends AppCompatActivity
                 "\nSessionName " + item.SessionName + "\nSession " + item.Session +
                 "\nMemUsage " + item.MemUsage;
         Dialog dialog = new Dialog(TasksActivity.this);
+        //AlertDialog.Builder popupBuilder = new AlertDialog.Builder(this);
         dialog.setTitle("Process Datails");
         dialog.setContentView(R.layout.dialog);
         TextView procText = (TextView)dialog.findViewById(R.id.dialog_text_view);
         procText.setText(strShow);
+        procText.setGravity(Gravity.CENTER_HORIZONTAL);
         dialog.show();
         //Toast.makeText(TasksActivity.this, strShow, Toast.LENGTH_LONG).show();
     }
@@ -66,6 +70,10 @@ public class TasksActivity extends AppCompatActivity
             case InfoPage:
 //                overall.nowInfoFragment = InfoFragment.newInstance();
                 fragment = InfoFragment.newInstance();
+                break;
+            case ScreenshotPage:
+                //overall.nowInfoFragment = InfoFragment.newInstance();
+                fragment = ScreenshotFragment.newInstance();
                 break;
             default:
                 fragment = new Fragment();
@@ -164,6 +172,7 @@ public class TasksActivity extends AppCompatActivity
                 clientGeneralThread = new ClientGeneralThread(
                         DataHead.getDataHead("screenshotCommandHead"), overall.commandOutputStream, overall);
                 clientGeneralThread.start();
+                changeFragment(fragmentType.ScreenshotPage);
                 break;
             case R.id.navKillProcess:
                 changeFragment(fragmentType.KillProcessPage);
@@ -172,11 +181,13 @@ public class TasksActivity extends AppCompatActivity
                 clientGeneralThread = new ClientGeneralThread(
                         DataHead.getDataHead("shutdownCommandHead"), overall.commandOutputStream, overall);
                 clientGeneralThread.start();
+                Toast.makeText(TasksActivity.this, "Remote PC will be shut down in 1 mintue", Toast.LENGTH_SHORT).show();
                 break;
             case R.id.navDisconnect:
                 clientGeneralThread = new ClientGeneralThread(
                         DataHead.getDataHead("disconnectCommandHead"), overall.commandOutputStream, overall);
                 clientGeneralThread.start();
+                Toast.makeText(TasksActivity.this, "Disconnecting...", Toast.LENGTH_SHORT).show();
                 break;
 
         }

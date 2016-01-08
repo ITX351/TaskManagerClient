@@ -12,14 +12,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link ProcessFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link ProcessFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class ProcessFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String OPERATION_TYPE = "OperationType"; // 0 for run, 1 for kill
