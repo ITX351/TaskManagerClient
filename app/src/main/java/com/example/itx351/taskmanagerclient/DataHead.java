@@ -1,10 +1,6 @@
 package com.example.itx351.taskmanagerclient;
 
 public final class DataHead {
-//	byte dataHead = 0x70;
-//	byte screenshotHead = 0x71;
-//	byte authorityHead = 0x72;
-//  byte unknownHead = 0x73;
 	public DataHead() {
 	}
 

@@ -23,6 +23,8 @@ public class ProcessFragment extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String OPERATION_TYPE = "OperationType"; // 0 for run, 1 for kill
     private int operationType;
+    private ClientGeneralThread clientGeneralThread;
+    public Overall overall;
 
 //    private OnFragmentInteractionListener mListener;
 
@@ -53,7 +55,7 @@ public class ProcessFragment extends Fragment {
 
         TextView lblOperation = (TextView)ll.findViewById(R.id.pro_lblOperation);
         final EditText txtProcessName = (EditText)ll.findViewById(R.id.pro_txtProcessName);
-        String processName = txtProcessName.getText().toString();
+        final String processName = txtProcessName.getText().toString();
 
         if (operationType == 0) {
             lblOperation.setText(R.string.pro_RunProcess);
@@ -67,11 +69,14 @@ public class ProcessFragment extends Fragment {
             public void onClick(View view) {
                 // Use String: processName defined above
                 if (operationType == 0) {
-                    //TODO: Run Process
+                    clientGeneralThread = new ClientGeneralThread(
+                            DataHead.getDataHead("runProcessCommandHead"), overall.commandOutputStream, overall, processName);
+                    clientGeneralThread.start();
                 }
                 else if (operationType == 1) {
-                    //TODO: Kill Process
-                    // Inputting PID looks easy
+                    clientGeneralThread = new ClientGeneralThread(
+                            DataHead.getDataHead("killProcessCommandHead"), overall.commandOutputStream, overall, processName);
+                    clientGeneralThread.start();
                 }
             }
         });
