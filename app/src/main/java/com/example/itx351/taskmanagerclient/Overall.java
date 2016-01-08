@@ -22,7 +22,8 @@ public class Overall extends Application{
     public static final int TasksFragmentAutoUpdateSleepTime = 3000; //ms
     public static final int ListenThreadSleepTime = 1000; //ms
 
-    public ImageView screenshot;
+    //public ImageView screenshot;
+    public ScreenshotFragment nowScreenshotFragment;
 
     @Override
     public void onCreate()

@@ -65,8 +65,8 @@ public class TasksActivity extends AppCompatActivity
                 fragment = InfoFragment.newInstance();
                 break;
             case ScreenshotPage:
-                //overall.nowInfoFragment = InfoFragment.newInstance();
-                fragment = ScreenshotFragment.newInstance();
+                overall.nowScreenshotFragment = ScreenshotFragment.newInstance();
+                fragment = overall.nowScreenshotFragment;
                 break;
             default:
                 fragment = new Fragment();

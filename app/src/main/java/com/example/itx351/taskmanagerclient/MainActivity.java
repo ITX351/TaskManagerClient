@@ -66,8 +66,8 @@ public class MainActivity extends AppCompatActivity {
                     return;
                 }
 
-                CountDownLatch cDownLatch = new CountDownLatch(1);
-                ClientListenThread clientListenThread = new ClientListenThread(overall.commandInputStream, cDownLatch, overall);
+
+                ClientListenThread clientListenThread = new ClientListenThread(overall.commandInputStream, overall);
                 new Thread(clientListenThread).start();
 
                 Intent tasksActivity = new Intent();
