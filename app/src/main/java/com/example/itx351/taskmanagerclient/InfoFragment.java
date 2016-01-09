@@ -28,7 +28,7 @@ public class InfoFragment extends Fragment {
             }
             else {
                 String strCPU, strMemory, strDisk, strNetwork;
-                strCPU = Double.toString(sysInfo.cpuSys);
+                strCPU = Double.toString(sysInfo.cpuCombined);
                 strMemory = Double.toString(sysInfo.memUsed) + " / " + Double.toString(sysInfo.memTotal);
                 strDisk = "To show disk";
                 strNetwork = "To show network";
