@@ -18,11 +18,11 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:layout_width="70dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/inf_lblCPU"
-        android:id="@+id/inf_lblCPU"
+        android:text="@string/inf_lblCPUSys"
+        android:id="@+id/inf_lblCPUSys"
         android:layout_weight="0.21"
         android:layout_marginTop="44dp"
         android:layout_below="@+id/inf_lblRemoteStatus"
@@ -34,12 +34,54 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/DefaultString"
-        android:id="@+id/inf_lblCPUContent"
-        android:layout_alignBottom="@id/inf_lblCPU"
-        android:layout_toEndOf="@+id/inf_lblMemory"
-        android:layout_alignTop="@+id/inf_lblCPU"
-        android:layout_toRightOf="@+id/inf_lblMemory" />
+        android:id="@+id/inf_lblCPUSysContent"
+        android:layout_alignTop="@+id/inf_lblCPUSys"
+        android:layout_alignRight="@+id/inf_lblRemoteStatus"
+        android:layout_alignEnd="@+id/inf_lblRemoteStatus" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/inf_lblCPUUser"
+        android:id="@+id/inf_lblCPUUser"
+        android:layout_weight="0.21"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/inf_lblCPUSys"
+        android:layout_alignLeft="@+id/inf_lblCPUSys"
+        android:layout_alignStart="@+id/inf_lblCPUSys" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/DefaultString"
+        android:id="@+id/inf_lblCPUUserContent"
+        android:layout_alignTop="@+id/inf_lblCPUUser"
+        android:layout_alignLeft="@+id/inf_lblCPUSysContent"
+        android:layout_alignStart="@+id/inf_lblCPUSysContent" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/inf_lblCPUCombined"
+        android:id="@+id/inf_lblCPUCombined"
+        android:layout_weight="0.21"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/inf_lblCPUUser"
+        android:layout_alignLeft="@+id/inf_lblCPUUser"
+        android:layout_alignStart="@+id/inf_lblCPUUser" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/DefaultString"
+        android:id="@+id/inf_lblCPUCombinedContent"
+        android:layout_alignTop="@+id/inf_lblCPUCombined"
+        android:layout_alignLeft="@+id/inf_lblMemoryContent"
+        android:layout_alignStart="@+id/inf_lblMemoryContent" />
 
     <TextView
         android:layout_height="wrap_content"
@@ -47,11 +89,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/inf_lblMemory"
         android:id="@+id/inf_lblMemory"
-        android:layout_below="@id/inf_lblCPU"
         android:layout_marginTop="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="80dp"
-        />
+        android:layout_below="@+id/inf_lblCPUCombined"
+        android:layout_toLeftOf="@+id/inf_lblRemoteStatus"
+        android:layout_toStartOf="@+id/inf_lblRemoteStatus" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -59,54 +100,9 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/DefaultString"
         android:id="@+id/inf_lblMemoryContent"
-        android:layout_alignBottom="@id/inf_lblMemory"
-        android:layout_toRightOf="@+id/inf_lblMemory"/>
-
-
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/inf_lblDisk"
-        android:id="@+id/inf_lblDisk"
-        android:layout_weight="0.21"
-        android:layout_below="@id/inf_lblMemory"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="80dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/DefaultString"
-        android:id="@+id/inf_lblDiskContent"
-        android:layout_above="@+id/inf_lblNetwork"
-        android:layout_alignLeft="@+id/inf_lblNetworkContent"
-        android:layout_alignStart="@+id/inf_lblNetworkContent" />
-
-
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/inf_lblNetwork"
-        android:id="@+id/inf_lblNetwork"
-        android:layout_weight="0.21"
-        android:layout_below="@id/inf_lblDisk"
-        android:layout_marginTop="40dp"
-        android:layout_marginLeft="40dp"
-        android:layout_marginRight="80dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="@string/DefaultString"
-        android:id="@+id/inf_lblNetworkContent"
-        android:layout_alignBottom="@id/inf_lblNetwork"
-        android:layout_toRightOf="@+id/inf_lblNetwork"
-        />
+        android:layout_alignTop="@+id/inf_lblMemory"
+        android:layout_alignLeft="@+id/inf_lblCPUUserContent"
+        android:layout_alignStart="@+id/inf_lblCPUUserContent" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -114,10 +110,10 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:text="@string/inf_lblDomainName"
         android:id="@+id/inf_lblDomainName"
-        android:layout_below="@+id/inf_lblNetwork"
-        android:layout_alignLeft="@+id/inf_lblNetwork"
-        android:layout_alignStart="@+id/inf_lblNetwork"
-        android:layout_marginTop="34dp" />
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/inf_lblMemory"
+        android:layout_alignLeft="@+id/inf_lblMemory"
+        android:layout_alignStart="@+id/inf_lblMemory" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -126,7 +122,7 @@
         android:text="@string/DefaultString"
         android:id="@+id/inf_lblDomainNameContent"
         android:layout_alignTop="@+id/inf_lblDomainName"
-        android:layout_toRightOf="@+id/inf_lblNetwork"
-        android:layout_toEndOf="@+id/inf_lblNetwork" />
+        android:layout_alignLeft="@+id/inf_lblMemoryContent"
+        android:layout_alignStart="@+id/inf_lblMemoryContent" />
 
 </RelativeLayout>

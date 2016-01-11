@@ -13,8 +13,7 @@ import android.widget.TextView;
 
 public class InfoFragment extends Fragment {
     Overall overall;
-    private TextView lblCPUContent, lblMemoryContent, lblDiskContent,
-            lblNetworkContent;
+    private TextView lblCPUSysContent, lblCPUUserContent, lblCPUCombinedContent, lblMemoryContent;
 
     private final Handler handler = new Handler();
 
@@ -27,16 +26,16 @@ public class InfoFragment extends Fragment {
                 Log.e("sysInfo", "sysInfo NULL in InfoFragment!");
             }
             else {
-                String strCPU, strMemory, strDisk, strNetwork;
-                strCPU = Double.toString(sysInfo.cpuSys);
+                String strCPUSys, strCPUUser, strCPUCombined, strMemory;
+                strCPUSys = Double.toString(sysInfo.cpuSys);
+                strCPUUser = Double.toString(sysInfo.cpuUser);
+                strCPUCombined = Double.toString(sysInfo.cpuCombined);
                 strMemory = Double.toString(sysInfo.memUsed) + " / " + Double.toString(sysInfo.memTotal);
-                strDisk = "To show disk";
-                strNetwork = "To show network";
 
-                lblCPUContent.setText(strCPU); //更新界面信息
+                lblCPUSysContent.setText(strCPUSys); //更新界面信息
+                lblCPUUserContent.setText(strCPUUser);
+                lblCPUCombinedContent.setText(strCPUCombined);
                 lblMemoryContent.setText(strMemory);
-                lblDiskContent.setText(strDisk);
-                lblNetworkContent.setText(strNetwork);
             }
             handler.postDelayed(this, Overall.InfoFragmentAutoUpdateSleepTime); //持续更新
         }
@@ -61,10 +60,10 @@ public class InfoFragment extends Fragment {
                              Bundle savedInstanceState) {
         RelativeLayout ll = (RelativeLayout)inflater.inflate(R.layout.fragment_info, container, false);
 
-        lblCPUContent = (TextView)ll.findViewById(R.id.inf_lblCPUContent); //存储控件
+        lblCPUSysContent = (TextView)ll.findViewById(R.id.inf_lblCPUSysContent); //存储控件
+        lblCPUUserContent = (TextView)ll.findViewById(R.id.inf_lblCPUUserContent);
+        lblCPUCombinedContent = (TextView)ll.findViewById(R.id.inf_lblCPUCombinedContent);
         lblMemoryContent = (TextView)ll.findViewById(R.id.inf_lblMemoryContent);
-        lblDiskContent = (TextView)ll.findViewById(R.id.inf_lblDiskContent);
-        lblNetworkContent = (TextView)ll.findViewById(R.id.inf_lblNetworkContent);
         ((TextView)ll.findViewById(R.id.inf_lblDomainNameContent)).setText(overall.DomainName); //显示域名
 
         return ll;

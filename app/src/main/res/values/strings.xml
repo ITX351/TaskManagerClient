@@ -22,10 +22,10 @@
 
     <!-- fragment_info.xml -->
     <string name="inf_lblRemoteStatus">Remote Status</string>
-    <string name="inf_lblCPU">CPU</string>
+    <string name="inf_lblCPUSys">CPU Sys</string>
+    <string name="inf_lblCPUUser">CPU User</string>
+    <string name="inf_lblCPUCombined">CPU Combined</string>
     <string name="inf_lblMemory">Memory</string>
-    <string name="inf_lblDisk">Disk</string>
-    <string name="inf_lblNetwork">Network</string>
     <string name="inf_lblDomainName">Domain Name</string>
     <string name="inf_lblKeyword">Keyword</string>
 
